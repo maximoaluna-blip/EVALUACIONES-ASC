@@ -6,7 +6,7 @@
 
 **Primer caso de uso (Fase 1):** Curso *Método Scout (Un Día)* — Evaluación de Apropiación.
 
-**Estado:** 🚧 En construcción. Iniciado el 2026-06-27.
+**Estado:** ✅ Fase 1 en producción (2026-06-27) → https://maximoaluna-blip.github.io/EVALUACIONES-ASC/
 
 **Documentos relacionados:** [README](../README.md) · [Modelo de datos](MODELO-DATOS.md) · [Modelo de calificación](MODELO-CALIFICACION.md) · [Crear evaluación](CREAR-EVALUACION.md) · [Backend](BACKEND.md) · [Decisiones](DECISIONES.md) · [Roadmap](ROADMAP.md)
 
@@ -125,8 +125,8 @@ Detalle en [ROADMAP.md](ROADMAP.md).
 | Google Sheet "ASC Evaluaciones - Backend" | ✅ Creado (ver [BACKEND.md](BACKEND.md)) |
 | Apps Script + Web App desplegada | ✅ Desplegada y autorizada |
 | Tokens (`AUTH_TOKEN`, `ADMIN_TOKEN`) | ✅ Definidos (ver [BACKEND.md](BACKEND.md)) |
-| Repositorio GitHub | ⬜ Pendiente (Hito 7) |
-| URL Producción (GitHub Pages) | ⬜ Pendiente (Hito 7) |
+| Repositorio GitHub | ✅ https://github.com/maximoaluna-blip/EVALUACIONES-ASC |
+| URL Producción (GitHub Pages) | ✅ https://maximoaluna-blip.github.io/EVALUACIONES-ASC/ |
 
 IDs y URLs completos en [BACKEND.md](BACKEND.md). ⚠️ Antes de publicar el repo: mover tokens a Script Properties.
 

@@ -4,8 +4,12 @@
 
 Aplicación web (celular y PC, sin instalación) para **generar y aplicar evaluaciones PRE y POST** a participantes de cursos de formación, **calificarlas automáticamente** y entregar **retroalimentación** al participante y al formador.
 
-> **Estado:** 🚧 En construcción — Fase 1 (curso *Método Scout · Un Día*).
-> **Fecha de inicio:** 2026-06-27.
+> **Estado:** ✅ Fase 1 en producción (curso *Método Scout · Un Día*).
+> **Fecha:** 2026-06-27.
+>
+> 🌐 **App:** https://maximoaluna-blip.github.io/EVALUACIONES-ASC/
+> 📊 **Tablero del formador:** https://maximoaluna-blip.github.io/EVALUACIONES-ASC/dashboard-formador.html
+> 💻 **Repositorio:** https://github.com/maximoaluna-blip/EVALUACIONES-ASC
 
 ---
 

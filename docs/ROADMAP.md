@@ -14,7 +14,7 @@ Plan de construcción por hitos. Fase 1 = curso *Método Scout (Un Día)* de pun
 | 4 | **Retroalimentación**: PRE = puntaje por eje; POST = puntaje + clave + nivel + **delta PRE→POST** | 2, 3, 5 | ✅ Hecho (delta vía JSONP verificado: PRE 59.1%→POST 100% ▲+40.9) |
 | 5 | **Backend**: Sheet dedicado + Apps Script + persistencia + JSONP | 3 | ✅ Hecho (desplegado, autorizado, 4 envíos de prueba guardados) |
 | 6 | **Tablero del formador**: PRE vs POST por eje, alertas, justificaciones | 5 | ✅ Hecho (`dashboard-formador.html`; pide ADMIN_TOKEN, verificado con datos reales) |
-| 7 | **Pruebas y despliegue**: verificación en celular/PC + publicación en GitHub Pages | 4, 5, 6 | ⬜ Pendiente (antes: mover tokens a Script Properties) |
+| 7 | **Seguridad y despliegue**: secretos fuera del repo, limpieza de pruebas, publicación en GitHub Pages | 4, 5, 6 | ✅ Hecho — en vivo en https://maximoaluna-blip.github.io/EVALUACIONES-ASC/ |
 
 ### Definición de "terminado" (Fase 1)
 - Una persona puede hacer el PRE en su celular, recibir su puntaje por eje, y luego el POST con su mejora y la clave.
