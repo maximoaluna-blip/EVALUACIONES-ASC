@@ -17,9 +17,10 @@
   --morado: #622599;
   --morado-osc: #4a1c75;
   --amarillo: #ffe675;
-  --azul: #00afef;
-  --verde: #2e9e5b;
-  --rojo: #d64545;
+  --azul: #00afef;          /* acentos, bordes, barras (no para texto sobre blanco) */
+  --azul-osc: #00708f;      /* fondo azul con texto blanco (contraste AA) */
+  --verde: #1b7a44;         /* AA sobre blanco */
+  --rojo: #c62828;          /* AA sobre blanco */
   --gris: #636363;
   --bg: #f5f3f9;
   --card: #ffffff;
@@ -70,7 +71,7 @@ body {
   text-transform: uppercase;
 }
 .badge-modo.pre { background: var(--amarillo); color: #5a4500; }
-.badge-modo.post { background: var(--azul); color: #fff; }
+.badge-modo.post { background: var(--azul-osc); color: #fff; }
 
 /* --- Selector de modo (cuando no hay ?modo=) --- */
 .modo-chooser {
@@ -466,7 +467,8 @@ window.__EVAL_BACKEND__ = {"url":"https://script.google.com/macros/s/AKfycbwMegw
       it.columnaA.forEach(function (a) {
         h += '<div class="empareja-fila" data-a="' + esc(a.id) + '">' +
           '<span class="a">' + esc(a.texto) + '</span>' +
-          '<select id="match-' + it.id + '-' + esc(a.id) + '" name="match-' + it.id + '-' + esc(a.id) + '">' +
+          '<select id="match-' + it.id + '-' + esc(a.id) + '" name="match-' + it.id + '-' + esc(a.id) + '"' +
+          ' aria-label="Empareja: ' + esc(a.texto) + '">' +
           '<option value="">Selecciona…</option>';
         ordenB.forEach(function (b) { h += '<option value="' + esc(b.id) + '">' + esc(b.texto) + '</option>'; });
         h += '</select></div>';

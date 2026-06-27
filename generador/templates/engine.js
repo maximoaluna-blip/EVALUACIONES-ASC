@@ -151,7 +151,8 @@
       it.columnaA.forEach(function (a) {
         h += '<div class="empareja-fila" data-a="' + esc(a.id) + '">' +
           '<span class="a">' + esc(a.texto) + '</span>' +
-          '<select id="match-' + it.id + '-' + esc(a.id) + '" name="match-' + it.id + '-' + esc(a.id) + '">' +
+          '<select id="match-' + it.id + '-' + esc(a.id) + '" name="match-' + it.id + '-' + esc(a.id) + '"' +
+          ' aria-label="Empareja: ' + esc(a.texto) + '">' +
           '<option value="">Selecciona…</option>';
         ordenB.forEach(function (b) { h += '<option value="' + esc(b.id) + '">' + esc(b.texto) + '</option>'; });
         h += '</select></div>';

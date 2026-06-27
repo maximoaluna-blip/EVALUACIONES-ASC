@@ -1,0 +1,19 @@
+{
+  "name": "evaluaciones-asc-e2e",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pruebas E2E con Playwright + axe para la app de Evaluaciones PRE/POST (ASC).",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "smoke": "playwright test smoke",
+    "a11y": "playwright test a11y",
+    "responsive": "playwright test responsive",
+    "flujo": "playwright test e2e-flujo",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "^1.50.0"
+  }
+}
