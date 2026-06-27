@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso Método Scout (Un Día) · Evaluación de Apropiación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   EVALUACIONES-ASC · Asociación Scouts de Colombia
+   Montserrat | morado #622599 | amarillo #ffe675 | azul #00afef
+   Mobile-first, responsive (celular y PC)
+   ============================================================ */
+
+:root {
+  --morado: #622599;
+  --morado-osc: #4a1c75;
+  --amarillo: #ffe675;
+  --azul: #00afef;
+  --verde: #2e9e5b;
+  --rojo: #d64545;
+  --gris: #636363;
+  --bg: #f5f3f9;
+  --card: #ffffff;
+  --texto: #2b2b2b;
+  --borde: #e3dcef;
+  --radio: 12px;
+  --sombra: 0 2px 10px rgba(98, 37, 153, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--texto);
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* --- Encabezado --- */
+.eval-header {
+  background: linear-gradient(135deg, var(--morado), var(--morado-osc));
+  color: #fff;
+  border-radius: var(--radio);
+  padding: 22px 20px;
+  margin-bottom: 18px;
+  box-shadow: var(--sombra);
+}
+.eval-header h1 { margin: 0 0 4px; font-size: 1.25rem; line-height: 1.3; }
+.eval-header .sub { margin: 0; font-size: 0.85rem; opacity: 0.9; }
+.eval-header .org { margin: 10px 0 0; font-size: 0.8rem; opacity: 0.85; }
+
+.badge-modo {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.badge-modo.pre { background: var(--amarillo); color: #5a4500; }
+.badge-modo.post { background: var(--azul); color: #fff; }
+
+/* --- Selector de modo (cuando no hay ?modo=) --- */
+.modo-chooser {
+  background: var(--card);
+  border-radius: var(--radio);
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: var(--sombra);
+}
+.modo-chooser h2 { color: var(--morado); margin-top: 0; }
+.modo-botones { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 18px; }
+.modo-btn {
+  flex: 1 1 200px;
+  border: 2px solid var(--morado);
+  border-radius: var(--radio);
+  padding: 18px;
+  background: #fff;
+  text-decoration: none;
+  color: var(--texto);
+  transition: transform .15s, box-shadow .15s;
+}
+.modo-btn:hover { transform: translateY(-2px); box-shadow: var(--sombra); }
+.modo-btn strong { display: block; color: var(--morado); font-size: 1.1rem; }
+.modo-btn span { font-size: 0.85rem; color: var(--gris); }
+
+/* --- Tarjeta de eje / sección --- */
+.eje {
+  margin: 22px 0;
+}
+.eje-titulo {
+  color: var(--morado);
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-left: 5px solid var(--amarillo);
+  padding: 4px 0 4px 12px;
+  margin-bottom: 12px;
+}
+
+/* --- Ítem (pregunta) --- */
+.item {
+  background: var(--card);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 16px 16px 8px;
+  margin-bottom: 14px;
+  box-shadow: var(--sombra);
+}
+.item legend, .item .enunciado {
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 10px;
+  padding: 0;
+}
+.item .meta-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--morado);
+  background: #f0e9fa;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.item fieldset { border: 0; margin: 0; padding: 0; }
+
+/* --- Opciones (radio) --- */
+.opcion {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 12px;
+  border: 1.5px solid var(--borde);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.opcion:hover { border-color: var(--morado); background: #faf7fe; }
+.opcion input { margin-top: 3px; flex-shrink: 0; width: 18px; height: 18px; accent-color: var(--morado); }
+.opcion .txt { font-size: 0.94rem; }
+.opcion.sel { border-color: var(--morado); background: #f3edfa; }
+.opcion.correcta { border-color: var(--verde); background: #eaf7ef; }
+.opcion.incorrecta { border-color: var(--rojo); background: #fbeaea; }
+.opcion .marca { margin-left: auto; font-weight: 700; }
+.opcion.correcta .marca { color: var(--verde); }
+.opcion.incorrecta .marca { color: var(--rojo); }
+
+/* --- Emparejar --- */
+.empareja-fila {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.empareja-fila .a {
+  flex: 1 1 45%;
+  min-width: 140px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+.empareja-fila select {
+  flex: 1 1 45%;
+  min-width: 140px;
+  padding: 10px;
+  border: 1.5px solid var(--borde);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  background: #fff;
+}
+.empareja-fila select:focus { outline: 2px solid var(--morado); border-color: var(--morado); }
+.empareja-fila.correcta select { border-color: var(--verde); background: #eaf7ef; }
+.empareja-fila.incorrecta select { border-color: var(--rojo); background: #fbeaea; }
+
+/* --- Justificación / texto --- */
+.justif label { display: block; font-size: 0.88rem; color: var(--gris); margin: 6px 0 4px; }
+.justif textarea {
+  width: 100%;
+  min-height: 64px;
+  padding: 10px;
+  border: 1.5px solid var(--borde);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  resize: vertical;
+}
+.justif textarea:focus { outline: 2px solid var(--morado); border-color: var(--morado); }
+
+/* --- Escala (autopercepción) --- */
+.escala-item { margin-bottom: 16px; }
+.escala-item .afirm { font-weight: 600; font-size: 0.94rem; margin-bottom: 8px; }
+.escala-opts { display: flex; gap: 6px; justify-content: space-between; }
+.escala-opts label {
+  flex: 1;
+  text-align: center;
+  border: 1.5px solid var(--borde);
+  border-radius: 10px;
+  padding: 10px 4px;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--morado);
+  transition: background .15s, border-color .15s;
+}
+.escala-opts input { display: none; }
+.escala-opts label:hover { background: #faf7fe; }
+.escala-opts input:checked + span { }
+.escala-opts label.sel { background: var(--morado); color: #fff; border-color: var(--morado); }
+.escala-leyenda { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--gris); margin-top: 4px; }
+
+/* --- Campos de identificación --- */
+.campo { margin-bottom: 14px; }
+.campo label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; }
+.campo .nota { font-weight: 400; color: var(--gris); font-size: 0.8rem; }
+.campo input, .campo select {
+  width: 100%;
+  padding: 11px;
+  border: 1.5px solid var(--borde);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: #fff;
+}
+.campo input:focus, .campo select:focus { outline: 2px solid var(--morado); border-color: var(--morado); }
+
+/* --- Botones --- */
+.btn {
+  display: inline-block;
+  background: var(--morado);
+  color: #fff;
+  border: 0;
+  padding: 14px 28px;
+  border-radius: var(--radio);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: background .15s;
+}
+.btn:hover { background: var(--morado-osc); }
+.btn:disabled { background: #b9a9d1; cursor: not-allowed; }
+
+/* --- Avisos --- */
+.aviso {
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  margin: 12px 0;
+}
+.aviso.warn { background: #fff6e0; border: 1px solid var(--amarillo); color: #6b5300; }
+.aviso.info { background: #e7f6fd; border: 1px solid var(--azul); color: #0a5c7a; }
+
+/* --- Resultados --- */
+.resultados { background: var(--card); border-radius: var(--radio); padding: 22px 20px; box-shadow: var(--sombra); }
+.resultados h2 { color: var(--morado); margin-top: 0; }
+.res-total {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--morado);
+  margin: 6px 0;
+}
+.res-total small { display: block; font-size: 0.85rem; font-weight: 600; color: var(--gris); }
+.delta { font-size: 0.82rem; font-weight: 700; }
+.delta.up { color: var(--verde); }
+.delta.down { color: var(--rojo); }
+.delta.flat { color: var(--gris); }
+.barra-eje { margin: 12px 0; }
+.barra-eje .lbl { display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: 600; margin-bottom: 4px; }
+.barra-eje .nivel { font-size: 0.68rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; vertical-align: middle; }
+.barra-eje .nivel.ok { background: #eaf7ef; color: var(--verde); }
+.barra-eje .nivel.medio { background: #fff6e0; color: #8a6d00; }
+.barra-eje .nivel.bajo { background: #fbeaea; color: var(--rojo); }
+.barra-track { background: #ece5f6; border-radius: 999px; height: 14px; overflow: hidden; }
+.barra-fill { background: linear-gradient(90deg, var(--morado), var(--azul)); height: 100%; border-radius: 999px; transition: width .6s; }
+
+.clave-box {
+  border-left: 4px solid var(--azul);
+  background: #f0faff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-top: 8px;
+  font-size: 0.88rem;
+}
+.clave-box .lbl { font-weight: 700; color: #0a5c7a; }
+
+.footer { text-align: center; color: var(--gris); font-size: 0.78rem; margin: 26px 0 10px; }
+
+@media (min-width: 700px) {
+  .wrap { padding: 28px; }
+  .eval-header h1 { font-size: 1.5rem; }
+}
+
+</style>
+</head>
+<body>
+<main class="wrap"><div id="app"></div></main>
+<script>window.__EVAL_DATA__ = {"evaluacionId":"metodo-scout","titulo":"Curso Método Scout (Un Día) · Evaluación de Apropiación","subtitulo":"Dirección Nacional de Adultos en el Movimiento · Coordinación de Formación","organizacion":"Asociación Scouts de Colombia","anio":2026,"enfoque":"CONCEPTUAL: los ítems evalúan la comprensión y aplicación de los conceptos, no la memorización de textos o etiquetas.","config":{"barajarOpciones":true,"umbralReferencia":70,"revelarClave":{"pre":false,"post":true},"emparejarMode":"proporcional","emparejarParcial":true},"identificacion":{"seccion":"0","soloEn":"pre","descripcion":"Sección 0 · Identificación (solo PRE)","campos":[{"id":"nombre","etiqueta":"Nombre completo","tipo":"texto","requerido":true},{"id":"correo","etiqueta":"Correo electrónico","tipo":"email","requerido":true,"nota":"Es la llave para emparejar tu PRE con tu POST. Usa el mismo en ambos."},{"id":"rama","etiqueta":"Rama / unidad en la que sirves","tipo":"seleccion","requerido":true,"opciones":["Familia (Cachorros)","Manada (Lobatos)","Tropa (Scouts)","Comunidad (Caminantes)","Clan (Rovers)","No sirvo en una rama por ahora","Otra"]},{"id":"experiencia","etiqueta":"Años de experiencia como voluntario","tipo":"numero","requerido":true,"min":0,"max":80}]},"ejes":[{"id":"eje1","nombre":"Eje 1 · Principios educativos","seccion":"A","items":[1,2,3,4,5,6,7]},{"id":"eje2","nombre":"Eje 2 · El Método Scout","seccion":"A","items":[8,9,10,11,12,13,14]},{"id":"eje3","nombre":"Eje 3 · El Método en las ramas","seccion":"A","items":[15,16,17,18,19]},{"id":"transversal","nombre":"Transversal · El aprendizaje por la experiencia","seccion":"A","items":[20]},{"id":"casos","nombre":"Sección B · Casos de juicio pedagógico","seccion":"B","items":[21,22]}],"items":[{"id":1,"eje":"eje1","seccion":"A","tipo":"opcion_unica","dificultad":"media","enunciado":"¿Cuál enunciado refleja mejor la diferencia entre EDUCAR e instruir o recrear en el escultismo?","opciones":["Educar es transmitir más técnicas y conocimientos que la instrucción.","Educar es acompañar el desarrollo integral y la autoeducación del protagonista; instruir y recrear se quedan en transmitir o entretener.","Educar y recrear son lo mismo cuando se hacen al aire libre.","Educar es lograr que el grupo obtenga más reconocimientos."],"respuesta":1,"clave":"Educar = desarrollo integral y autoeducación; las otras confunden el fin con medios (técnicas, aire libre, reconocimientos)."},{"id":2,"eje":"eje1","seccion":"A","tipo":"opcion_unica","dificultad":"media","enunciado":"¿Cuál es el eje o corazón de la Misión del Movimiento Scout?","opciones":["La vida en la naturaleza.","La educación de los jóvenes.","El sistema de insignias.","El uniforme y la disciplina."],"respuesta":1,"clave":"La educación es el eje de la Misión; la naturaleza, las insignias y el uniforme son medios."},{"id":3,"eje":"eje1","seccion":"A","tipo":"opcion_unica","subtipo":"identificar_falsa","dificultad":"alta","enunciado":"Sobre el horizonte que plantea la Misión, ¿cuál afirmación es FALSA?","opciones":["Busca que las personas se realicen como individuos.","Busca que las personas asuman un papel constructivo en la sociedad.","La realización individual es el fin último, sin necesidad de aporte a los demás.","Articula realización personal y compromiso con la comunidad."],"respuesta":2,"clave":"FALSA: la Misión articula realización personal Y papel constructivo en la sociedad; no es solo individual."},{"id":4,"eje":"eje1","seccion":"A","tipo":"opcion_unica","dificultad":"alta","enunciado":"En el escultismo, la Promesa y la Ley funcionan, ante todo, como…","opciones":["un reglamento externo que se impone y se vigila.","un compromiso personal y libre con un sistema de valores, que se vive y se renueva al crecer.","un requisito administrativo para ascender de rama.","una lista de prohibiciones."],"respuesta":1,"clave":"La Promesa y la Ley son un compromiso libre y vivido, no un reglamento impuesto ni una lista de prohibiciones."},{"id":5,"eje":"eje1","seccion":"A","tipo":"emparejar","dificultad":"media","enunciado":"Empareja cada pilar de la educación con su sentido.","columnaA":[{"id":"1","texto":"Conocer"},{"id":"2","texto":"Hacer"},{"id":"3","texto":"Vivir Juntos"},{"id":"4","texto":"Ser"}],"columnaB":[{"id":"A","texto":"cooperar y convivir con otros"},{"id":"B","texto":"comprender y dar sentido al mundo"},{"id":"C","texto":"competencias prácticas, aprender en la acción"},{"id":"D","texto":"autonomía, juicio e identidad personal"}],"respuesta":{"1":"B","2":"C","3":"A","4":"D"},"clave":"Conocer=comprender; Hacer=competencias prácticas; Vivir juntos=convivir; Ser=autonomía e identidad."},{"id":6,"eje":"eje1","seccion":"A","tipo":"opcion_unica","dificultad":"alta","enunciado":"Una actividad respeta el principio de “desafío sin sobrecarga” cuando…","opciones":["es idéntica para todos, sin importar el nivel de cada quien.","ofrece retos a la medida de cada persona, que exigen sin abrumar ni aburrir.","es muy sencilla para que todos la logren rápido.","es muy difícil, para exigir siempre el máximo."],"respuesta":1,"clave":"Desafío sin sobrecarga = reto a la medida de cada quien; ni tan fácil que aburra ni tan difícil que abrume."},{"id":7,"eje":"eje1","seccion":"A","tipo":"emparejar","dificultad":"media","enunciado":"Empareja cada concepto con su significado.","columnaA":[{"id":"1","texto":"Autoeducación"},{"id":"2","texto":"Coeducación"},{"id":"3","texto":"Educación por el amor"}],"columnaB":[{"id":"A","texto":"se aprende entre pares y en la convivencia con la diversidad"},{"id":"B","texto":"el protagonista es responsable de su propio desarrollo y el adulto crea condiciones"},{"id":"C","texto":"se educa desde el vínculo afectivo, el aprecio y el ejemplo, no desde el temor"}],"respuesta":{"1":"B","2":"A","3":"C"},"clave":"Autoeducación=protagonista de su desarrollo; coeducación=entre pares; educación por el amor=desde el afecto."},{"id":8,"eje":"eje2","seccion":"A","tipo":"opcion_unica","dificultad":"media","enunciado":"¿Cuál enunciado describe MEJOR qué es el Método Scout?","opciones":["Un conjunto de actividades atractivas al aire libre.","Un sistema de autoeducación en el que varios elementos interactúan como un todo cohesivo.","El compromiso de la Promesa y la Ley.","Un programa de insignias y reconocimientos."],"respuesta":1,"clave":"El Método es un sistema cohesivo de autoeducación; las otras lo reducen a una parte o a actividades."},{"id":9,"eje":"eje2","seccion":"A","tipo":"opcion_unica","subtipo":"identificar_falsa","dificultad":"alta","enunciado":"Sobre cómo funciona el Método como sistema, ¿cuál afirmación es FALSA?","opciones":["Sus elementos son igualmente importantes.","Uno de los elementos es superior y los demás se subordinan a él.","Deben aplicarse combinados y equilibrados a lo largo del tiempo.","Aplicar solo algunos elementos sueltos no es aplicar el Método."],"respuesta":1,"clave":"FALSA: ningún elemento es superior; los elementos son igualmente importantes y se aplican equilibrados."},{"id":10,"eje":"eje2","seccion":"A","tipo":"opcion_unica","dificultad":"alta","enunciado":"Un adulto que crea oportunidades y acompaña, pero NO resuelve ni decide por los jóvenes, está viviendo sobre todo el elemento de…","opciones":["el apoyo del adulto (facilitar sin protagonizar).","el marco simbólico.","la progresión personal.","la naturaleza."],"respuesta":0,"clave":"Facilitar y acompañar sin resolver por los jóvenes = apoyo del adulto."},{"id":11,"eje":"eje2","seccion":"A","tipo":"opcion_unica","dificultad":"media","enunciado":"Cuando los jóvenes aprenden en pequeños grupos donde deciden, cooperan y asumen responsabilidades, se vive el elemento de…","opciones":["la naturaleza.","el sistema de equipos.","la progresión personal.","el marco simbólico."],"respuesta":1,"clave":"Aprender en pequeños grupos que deciden y cooperan = sistema de equipos."},{"id":12,"eje":"eje2","seccion":"A","tipo":"emparejar","dificultad":"alta","enunciado":"Empareja cada principio del aprendizaje con el elemento del Método que mejor lo encarna.","columnaA":[{"id":"1","texto":"aprendizaje cooperativo"},{"id":"2","texto":"emoción y motivación"},{"id":"3","texto":"conexión con la vida real y la comunidad"},{"id":"4","texto":"avanzar a la propia medida"}],"columnaB":[{"id":"A","texto":"marco simbólico y naturaleza"},{"id":"B","texto":"sistema de equipos"},{"id":"C","texto":"participación en la comunidad"},{"id":"D","texto":"progresión personal"}],"respuesta":{"1":"B","2":"A","3":"C","4":"D"},"clave":"Cooperativo=equipos; emoción=marco simbólico/naturaleza; vida real=participación en la comunidad; a la propia medida=progresión personal."},{"id":13,"eje":"eje2","seccion":"A","tipo":"opcion_unica","dificultad":"media","enunciado":"¿Cómo se usa bien el marco simbólico (el relato y los símbolos)?","opciones":["Explicándolo con todo detalle para que se entienda.","Proponiéndolo, viviéndolo y dejándolo resonar, sin sobreexplicarlo, y adaptándolo a la edad.","Usándolo solo en los campamentos.","Cambiándolo en cada reunión para que no aburra."],"respuesta":1,"clave":"El marco simbólico se vive sin sobreexplicarlo y se adapta a la edad."},{"id":14,"eje":"eje2","seccion":"A","tipo":"opcion_unica","subtipo":"juicio_situacional","dificultad":"alta","enunciado":"Para “ahorrar tiempo”, un dirigente enseña él mismo cada nudo paso a paso y corrige a cada participante. ¿Qué está debilitando, sobre todo?","opciones":["El marco simbólico y la naturaleza.","El aprender haciendo y el apoyo del adulto (al protagonizar, impide el descubrimiento).","La Promesa y la Ley.","La participación en la comunidad."],"respuesta":1,"clave":"Al enseñar de frente, el adulto protagoniza e impide el descubrimiento: debilita aprender haciendo y apoyo del adulto."},{"id":15,"eje":"eje3","seccion":"A","tipo":"opcion_unica","dificultad":"alta","enunciado":"¿En qué se diferencian una “rama” y una “unidad”?","opciones":["Son sinónimos.","La rama es la identidad educativa propia de una edad; la unidad es el grupo concreto donde se vive (Familia, Manada, Tropa, Comunidad, Clan).","La rama es el grupo concreto y la unidad es la edad.","La rama es el uniforme y la unidad es el lema."],"respuesta":1,"clave":"La rama es la identidad educativa de la edad; la unidad es el grupo concreto."},{"id":16,"eje":"eje3","seccion":"A","tipo":"opcion_unica","dificultad":"alta","enunciado":"Al pasar de una rama a otra, ¿qué permanece y qué cambia?","opciones":["Permanecen los elementos del Método y los valores; cambian el lenguaje, la autonomía, la agrupación, el desafío y el rol del adulto.","Cambia el Método completo; cada rama tiene el suyo.","Permanece todo exactamente igual en todas las ramas.","Cambian los valores y permanece solo el uniforme."],"respuesta":0,"clave":"Permanecen elementos y valores; cambian lenguaje, autonomía, agrupación, desafío y rol del adulto."},{"id":17,"eje":"eje3","seccion":"A","tipo":"opcion_unica","subtipo":"juicio_situacional","dificultad":"alta","enunciado":"Acompañas un Clan de Rovers (jóvenes de 18 a 20 años). ¿Cuál es el estilo de acompañamiento adecuado?","opciones":["Dirigir y decidir las actividades por ellos.","Animar con juegos de fantasía y celebrar de cerca cada paso.","Asesorar cuidando el sentido y el cuidado, sin interferir en su autonomía.","Imponer retos físicos y dar instrucciones técnicas constantes."],"respuesta":2,"clave":"Con Rovers el adulto asesora sin interferir en la autonomía."},{"id":18,"eje":"eje3","seccion":"A","tipo":"opcion_unica","subtipo":"juicio_situacional","dificultad":"media","enunciado":"Con una Familia de Cachorros (niños de 5 a 6 años), ¿qué conviene priorizar?","opciones":["Charlas y conceptos abstractos sobre los valores.","El juego, la fantasía, el afecto y una presencia adulta cercana, con experiencias breves.","Proyectos de servicio con autonomía.","Competencias por equipos con técnica."],"respuesta":1,"clave":"Cachorros: juego, fantasía, afecto y presencia cercana; no abstracción ni autonomía de mayores."},{"id":19,"eje":"eje3","seccion":"A","tipo":"opcion_unica","dificultad":"alta","enunciado":"¿Qué es lo MÁS importante para aplicar bien el Método en cualquier rama?","opciones":["Dominar muchas técnicas y juegos.","Comprender a fondo cómo piensa, siente y vive el NNAJ de esa etapa.","Tener el mejor marco simbólico.","Cumplir el mayor número de actividades."],"respuesta":1,"clave":"Comprender al NNAJ de la etapa es la base de toda buena aplicación del Método."},{"id":20,"eje":"transversal","seccion":"A","tipo":"opcion_unica","dificultad":"media","enunciado":"Después de VIVIR una experiencia, el momento de “mirar/reflexionar” sirve para…","opciones":["pasar rápidamente a la siguiente actividad.","reflexionar sobre lo vivido (nombrar emociones, aciertos y errores) para convertir la experiencia en aprendizaje.","poner una calificación a cada participante.","descansar entre actividades."],"respuesta":1,"clave":"Tras vivir, reflexionar convierte la experiencia en aprendizaje (no es trámite ni calificación)."},{"id":21,"eje":"casos","seccion":"B","tipo":"caso","dificultad":"alta","enunciado":"En una Manada (niños de 7 a 10 años), un dirigente explica los valores con una charla de 20 minutos y exige silencio absoluto. ¿Qué recomendarías?","opciones":["Está bien: a esa edad necesitan escuchar en silencio.","Convertirlo en un juego organizado dentro de un relato, donde el valor se viva.","Posponer los valores hasta una rama mayor.","Reemplazar el relato por un examen escrito."],"respuesta":1,"justificacion":{"requerida":true,"etiqueta":"Justifica tu elección en una frase","puntua":false},"clave":"El valor se vive en juego/relato, acorde a cómo aprende un niño de Manada."},{"id":22,"eje":"casos","seccion":"B","tipo":"caso","dificultad":"alta","enunciado":"Un equipo de Nómadas Scout (15 a 17 años) propone un proyecto y el adulto lo reescribe por completo “para que quede mejor”. ¿Qué se ve afectado?","opciones":["Nada; el adulto debe garantizar la calidad.","El apoyo del adulto y la autonomía: debió acompañar y preguntar, no decidir por ellos.","Solo el marco simbólico.","Solo la naturaleza."],"respuesta":1,"justificacion":{"requerida":true,"etiqueta":"Justifica tu elección en una frase","puntua":false},"clave":"Reescribir por ellos afecta el apoyo del adulto y su autonomía: acompañar y preguntar, no decidir."}],"autopercepcion":{"seccion":"C","descripcion":"Sección C · Autopercepción (PRE = POST · escala 1 a 5)","escala":{"min":1,"max":5,"etiquetaMin":"nada de acuerdo","etiquetaMax":"totalmente de acuerdo"},"afirmaciones":["Comprendo por qué la educación es el corazón de la Misión.","Distingo educar de instruir y de recrear, y lo aplico en mi rama.","Entiendo el Método como un sistema cohesivo, no como una lista de actividades.","Reconozco los elementos del Método por lo que aportan, más allá de su nombre.","Comprendo cómo piensa y aprende el NNAJ de la rama en la que sirvo.","Sé adaptar una misma actividad a la edad (lenguaje, autonomía, desafío)."]}};
+window.__EVAL_BACKEND__ = {"url":"https://script.google.com/macros/s/AKfycbwMegwOg7CRRySbOc_oa8izN3HpMUMwu9oJ8G-y937T8TxV9SKa6i33BvPWWCci4h3cxg/exec","token":"EVAL_ASC_2026"};</script>
+<script>
+/* ============================================================
+   EVALUACIONES-ASC · Motor de evaluación (cliente)
+   Renderiza los ítems, califica por eje y gestiona el flujo PRE/POST.
+   El builder inyecta los datos en window.__EVAL_DATA__.
+   NOTA: la calificación se hace en el cliente para dar feedback
+   inmediato; el backend (Hito 5) la re-verifica y persiste.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var DATA = window.__EVAL_DATA__;
+  if (!DATA) { console.error('No hay datos de evaluación.'); return; }
+
+  var CFG = DATA.config || {};
+  var shuffleMap = {}; // itemId -> orden barajado de índices/ids
+
+  // ---------- utilidades ----------
+  function el(id) { return document.getElementById(id); }
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function getModo() {
+    var p = new URLSearchParams(location.search).get('modo');
+    return (p === 'pre' || p === 'post') ? p : null;
+  }
+  function ejeDe(itemId) {
+    for (var i = 0; i < DATA.ejes.length; i++) {
+      if (DATA.ejes[i].items.indexOf(itemId) !== -1) return DATA.ejes[i];
+    }
+    return null;
+  }
+
+  // ---------- selector de modo ----------
+  function renderChooser() {
+    el('app').innerHTML =
+      '<div class="modo-chooser">' +
+      '<h2>' + esc(DATA.titulo) + '</h2>' +
+      '<p>Elige cuándo estás respondiendo esta evaluación:</p>' +
+      '<div class="modo-botones">' +
+      '<a class="modo-btn" href="?modo=pre"><strong>PRE</strong><span>Antes del curso (línea base)</span></a>' +
+      '<a class="modo-btn" href="?modo=post"><strong>POST</strong><span>Al terminar el curso</span></a>' +
+      '</div></div>';
+  }
+
+  // ---------- render de la evaluación ----------
+  function renderEval(modo) {
+    var html = '';
+
+    // Encabezado
+    html += '<div class="eval-header">' +
+      '<h1>' + esc(DATA.titulo) + '</h1>' +
+      (DATA.subtitulo ? '<p class="sub">' + esc(DATA.subtitulo) + '</p>' : '') +
+      (DATA.organizacion ? '<p class="org">' + esc(DATA.organizacion) + '</p>' : '') +
+      '<span class="badge-modo ' + modo + '">' + (modo === 'pre' ? 'Evaluación PRE' : 'Evaluación POST') + '</span>' +
+      '</div>';
+
+    html += '<form id="evalForm" novalidate>';
+
+    // Identificación (solo PRE)
+    if (modo === 'pre' && DATA.identificacion) {
+      html += renderIdentificacion(DATA.identificacion);
+    } else if (modo === 'post' && DATA.identificacion) {
+      // En POST pedimos solo el correo (llave de emparejamiento)
+      html += '<div class="eje"><div class="eje-titulo">Identificación</div>' +
+        '<div class="item"><div class="campo">' +
+        '<label for="campo-correo">Correo electrónico ' +
+        '<span class="nota">— usa el mismo que en el PRE para emparejar tus resultados.</span></label>' +
+        '<input type="email" id="campo-correo" name="correo" required></div></div></div>';
+    }
+
+    // Ítems agrupados por eje
+    DATA.ejes.forEach(function (eje) {
+      var items = DATA.items.filter(function (it) { return it.eje === eje.id; });
+      if (!items.length) return;
+      html += '<div class="eje"><div class="eje-titulo">' + esc(eje.nombre) + '</div>';
+      items.forEach(function (it) { html += renderItem(it); });
+      html += '</div>';
+    });
+
+    // Autopercepción (Sección C)
+    if (DATA.autopercepcion) {
+      html += renderAutopercepcion(DATA.autopercepcion);
+    }
+
+    html += '<button type="submit" class="btn" id="btnEnviar">Calificar mis respuestas</button>';
+    html += '</form>';
+    html += '<div id="resultados"></div>';
+    html += '<p class="footer">' + esc(DATA.organizacion || '') + (DATA.anio ? ' · ' + DATA.anio : '') + '</p>';
+
+    el('app').innerHTML = html;
+    attachHandlers();
+  }
+
+  function renderIdentificacion(idf) {
+    var h = '<div class="eje"><div class="eje-titulo">' + esc(idf.descripcion || 'Identificación') + '</div><div class="item">';
+    (idf.campos || []).forEach(function (c) {
+      h += '<div class="campo"><label for="campo-' + esc(c.id) + '">' + esc(c.etiqueta) +
+        (c.nota ? ' <span class="nota">— ' + esc(c.nota) + '</span>' : '') + '</label>';
+      if (c.tipo === 'seleccion') {
+        h += '<select id="campo-' + esc(c.id) + '" name="' + esc(c.id) + '"' + (c.requerido ? ' required' : '') + '>' +
+          '<option value="">Selecciona…</option>';
+        (c.opciones || []).forEach(function (o) { h += '<option value="' + esc(o) + '">' + esc(o) + '</option>'; });
+        h += '</select>';
+      } else {
+        var tipo = c.tipo === 'numero' ? 'number' : (c.tipo === 'email' ? 'email' : 'text');
+        h += '<input type="' + tipo + '" id="campo-' + esc(c.id) + '" name="' + esc(c.id) + '"' +
+          (c.requerido ? ' required' : '') +
+          (c.min != null ? ' min="' + c.min + '"' : '') +
+          (c.max != null ? ' max="' + c.max + '"' : '') + '>';
+      }
+      h += '</div>';
+    });
+    h += '</div></div>';
+    return h;
+  }
+
+  function renderItem(it) {
+    var num = '<strong>' + it.id + '.</strong> ';
+    var tag = '';
+    if (it.subtipo === 'identificar_falsa') tag = '<span class="meta-tag">Identifica la FALSA</span>';
+    else if (it.subtipo === 'juicio_situacional') tag = '<span class="meta-tag">Caso</span>';
+    else if (it.tipo === 'emparejar') tag = '<span class="meta-tag">Emparejar</span>';
+    else if (it.tipo === 'caso') tag = '<span class="meta-tag">Caso</span>';
+
+    var h = '<fieldset class="item" id="item-' + it.id + '" data-tipo="' + it.tipo + '">' +
+      '<legend class="enunciado">' + num + esc(it.enunciado) + tag + '</legend>';
+
+    if (it.tipo === 'opcion_unica' || it.tipo === 'caso') {
+      var orden = CFG.barajarOpciones ? shuffle(it.opciones.map(function (_, i) { return i; })) : it.opciones.map(function (_, i) { return i; });
+      shuffleMap[it.id] = orden;
+      orden.forEach(function (origIdx) {
+        h += '<label class="opcion"><input type="radio" name="item-' + it.id + '" value="' + origIdx + '">' +
+          '<span class="txt">' + esc(it.opciones[origIdx]) + '</span></label>';
+      });
+      if (it.tipo === 'caso' && it.justificacion) {
+        h += '<div class="justif"><label for="justif-' + it.id + '">' + esc(it.justificacion.etiqueta || 'Justifica tu elección') + '</label>' +
+          '<textarea id="justif-' + it.id + '" name="justif-' + it.id + '"></textarea></div>';
+      }
+    } else if (it.tipo === 'emparejar') {
+      var ordenB = CFG.barajarOpciones ? shuffle(it.columnaB.slice()) : it.columnaB.slice();
+      it.columnaA.forEach(function (a) {
+        h += '<div class="empareja-fila" data-a="' + esc(a.id) + '">' +
+          '<span class="a">' + esc(a.texto) + '</span>' +
+          '<select id="match-' + it.id + '-' + esc(a.id) + '" name="match-' + it.id + '-' + esc(a.id) + '">' +
+          '<option value="">Selecciona…</option>';
+        ordenB.forEach(function (b) { h += '<option value="' + esc(b.id) + '">' + esc(b.texto) + '</option>'; });
+        h += '</select></div>';
+      });
+    }
+    h += '</fieldset>';
+    return h;
+  }
+
+  function renderAutopercepcion(ap) {
+    var esc1 = ap.escala || { min: 1, max: 5, etiquetaMin: '', etiquetaMax: '' };
+    var h = '<div class="eje"><div class="eje-titulo">' + esc(ap.descripcion || 'Autopercepción') + '</div>';
+    (ap.afirmaciones || []).forEach(function (af, idx) {
+      h += '<div class="item escala-item" data-ap="' + idx + '">' +
+        '<div class="afirm">' + esc(af) + '</div><div class="escala-opts">';
+      for (var v = esc1.min; v <= esc1.max; v++) {
+        h += '<label data-val="' + v + '"><input type="radio" name="ap-' + idx + '" value="' + v + '"><span>' + v + '</span></label>';
+      }
+      h += '</div><div class="escala-leyenda"><span>' + esc(esc1.etiquetaMin) + '</span><span>' + esc(esc1.etiquetaMax) + '</span></div></div>';
+    });
+    h += '</div>';
+    return h;
+  }
+
+  // ---------- interacción ----------
+  function attachHandlers() {
+    // resaltar opción seleccionada
+    document.querySelectorAll('.opcion input').forEach(function (inp) {
+      inp.addEventListener('change', function () {
+        var fs = inp.closest('fieldset');
+        fs.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('sel'); });
+        inp.closest('.opcion').classList.add('sel');
+      });
+    });
+    document.querySelectorAll('.escala-opts label').forEach(function (lab) {
+      lab.addEventListener('click', function () {
+        var cont = lab.parentNode;
+        cont.querySelectorAll('label').forEach(function (l) { l.classList.remove('sel'); });
+        lab.classList.add('sel');
+      });
+    });
+    var form = el('evalForm');
+    if (form) form.addEventListener('submit', onSubmit);
+  }
+
+  // ---------- calificación ----------
+  function gradeItem(it) {
+    if (it.tipo === 'opcion_unica' || it.tipo === 'caso') {
+      var sel = document.querySelector('input[name="item-' + it.id + '"]:checked');
+      if (!sel) return { points: 0, answered: false };
+      var chosen = parseInt(sel.value, 10);
+      return { points: chosen === it.respuesta ? 1 : 0, answered: true, chosen: chosen };
+    }
+    if (it.tipo === 'emparejar') {
+      var total = it.columnaA.length, correct = 0, answered = true, picks = {};
+      it.columnaA.forEach(function (a) {
+        var s = el('match-' + it.id + '-' + a.id);
+        var val = s ? s.value : '';
+        picks[a.id] = val;
+        if (!val) answered = false;
+        if (val && val === it.respuesta[a.id]) correct++;
+      });
+      var mode = CFG.emparejarMode || 'proporcional';
+      var pts = mode === 'todo_o_nada' ? (correct === total ? 1 : 0) : (correct / total);
+      return { points: pts, answered: answered, correct: correct, total: total, picks: picks };
+    }
+    return { points: 0, answered: false };
+  }
+
+  function gradeAll() {
+    var perItem = {}, ejeAgg = {}, totalP = 0, totalPos = 0;
+    DATA.ejes.forEach(function (e) { ejeAgg[e.id] = { points: 0, possible: 0, nombre: e.nombre }; });
+    DATA.items.forEach(function (it) {
+      var g = gradeItem(it);
+      perItem[it.id] = g;
+      if (ejeAgg[it.eje]) { ejeAgg[it.eje].points += g.points; ejeAgg[it.eje].possible += 1; }
+      totalP += g.points; totalPos += 1;
+    });
+    var pct = {};
+    Object.keys(ejeAgg).forEach(function (k) {
+      pct[k] = ejeAgg[k].possible ? Math.round((ejeAgg[k].points / ejeAgg[k].possible) * 1000) / 10 : 0;
+    });
+    pct.total = totalPos ? Math.round((totalP / totalPos) * 1000) / 10 : 0;
+    return { perItem: perItem, ejeAgg: ejeAgg, pct: pct };
+  }
+
+  function collectAutopercepcion() {
+    if (!DATA.autopercepcion) return [];
+    return DATA.autopercepcion.afirmaciones.map(function (_, idx) {
+      var sel = document.querySelector('input[name="ap-' + idx + '"]:checked');
+      return sel ? parseInt(sel.value, 10) : null;
+    });
+  }
+
+  function collectIdentificacion(modo) {
+    var idObj = {};
+    if (modo === 'pre' && DATA.identificacion) {
+      DATA.identificacion.campos.forEach(function (c) {
+        var node = el('campo-' + c.id);
+        if (node) idObj[c.id] = node.value.trim();
+      });
+    } else {
+      var cor = el('campo-correo');
+      if (cor) idObj.correo = cor.value.trim();
+    }
+    return idObj;
+  }
+
+  function collectJustificaciones() {
+    var j = {};
+    DATA.items.forEach(function (it) {
+      if (it.tipo === 'caso') {
+        var t = el('justif-' + it.id);
+        if (t) j[it.id] = t.value.trim();
+      }
+    });
+    return j;
+  }
+
+  // ---------- validación ----------
+  function validar(modo, grade, autop, idObj) {
+    var faltan = [];
+    // identificación
+    if (modo === 'pre' && DATA.identificacion) {
+      DATA.identificacion.campos.forEach(function (c) {
+        if (c.requerido && !idObj[c.id]) faltan.push('campo "' + c.etiqueta + '"');
+      });
+    } else if (!idObj.correo) {
+      faltan.push('tu correo electrónico');
+    }
+    // ítems
+    DATA.items.forEach(function (it) {
+      if (!grade.perItem[it.id].answered) faltan.push('ítem ' + it.id);
+    });
+    // autopercepción
+    autop.forEach(function (v, i) { if (v == null) faltan.push('autopercepción #' + (i + 1)); });
+    return faltan;
+  }
+
+  // ---------- envío ----------
+  function onSubmit(e) {
+    e.preventDefault();
+    var modo = getModo();
+    var grade = gradeAll();
+    var autop = collectAutopercepcion();
+    var idObj = collectIdentificacion(modo);
+    var justif = collectJustificaciones();
+
+    var faltan = validar(modo, grade, autop, idObj);
+    if (faltan.length) {
+      mostrarAviso('Te falta responder: ' + faltan.slice(0, 6).join(', ') +
+        (faltan.length > 6 ? ' y ' + (faltan.length - 6) + ' más.' : '.'), 'warn');
+      // llevar al primer faltante si es un ítem
+      var m = faltan[0].match(/ítem (\d+)/);
+      if (m) { var node = el('item-' + m[1]); if (node) node.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      return;
+    }
+
+    var payload = {
+      evaluacionId: DATA.evaluacionId,
+      modo: modo,
+      identificacion: idObj,
+      puntajes: grade.pct,
+      autopercepcion: autop,
+      justificaciones: justif,
+      respuestas: serializarRespuestas(grade)
+    };
+
+    var btn = el('btnEnviar');
+    if (btn) { btn.disabled = true; btn.textContent = 'Guardando…'; }
+
+    enviarBackend(payload).then(function () {
+      if (modo === 'post') {
+        // Recuperar el PRE del backend para calcular el delta
+        recuperarPrevio(idObj.correo).then(function (res) {
+          mostrarResultados(modo, grade, autop, res);
+        });
+      } else {
+        mostrarResultados(modo, grade, autop, null);
+      }
+    });
+  }
+
+  // ---------- comunicación con el backend ----------
+  function backendCfg() {
+    var B = window.__EVAL_BACKEND__;
+    return (B && B.url) ? B : null;
+  }
+
+  function enviarBackend(payload) {
+    var B = backendCfg();
+    if (!B) { console.log('[EVAL] Sin backend (modo local). Payload:', payload); return Promise.resolve(false); }
+    var body = JSON.stringify(Object.assign({ token: B.token }, payload));
+    return fetch(B.url, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: body
+    }).then(function () { return true; }).catch(function (err) { console.warn('[EVAL] Error al guardar:', err); return false; });
+  }
+
+  function recuperarPrevio(correo) {
+    var B = backendCfg();
+    if (!B || !correo) return Promise.resolve(null);
+    var url = B.url + '?action=resultado&token=' + encodeURIComponent(B.token) +
+      '&evaluacionId=' + encodeURIComponent(DATA.evaluacionId) +
+      '&correo=' + encodeURIComponent(correo);
+    return jsonp(url).catch(function () { return null; });
+  }
+
+  function jsonp(url) {
+    return new Promise(function (resolve, reject) {
+      var cbName = '__eval_cb_' + Date.now() + '_' + Math.floor(Math.random() * 1e6);
+      var script = document.createElement('script');
+      var timer = setTimeout(function () { cleanup(); reject(new Error('timeout')); }, 12000);
+      function cleanup() { clearTimeout(timer); try { delete window[cbName]; } catch (e) { window[cbName] = undefined; } if (script.parentNode) script.parentNode.removeChild(script); }
+      window[cbName] = function (data) { cleanup(); resolve(data); };
+      script.onerror = function () { cleanup(); reject(new Error('jsonp error')); };
+      script.src = url + (url.indexOf('?') > -1 ? '&' : '?') + 'callback=' + cbName;
+      document.body.appendChild(script);
+    });
+  }
+
+  function serializarRespuestas(grade) {
+    var r = {};
+    DATA.items.forEach(function (it) {
+      var g = grade.perItem[it.id];
+      r[it.id] = (it.tipo === 'emparejar') ? g.picks : g.chosen;
+    });
+    return r;
+  }
+
+  function mostrarAviso(msg, tipo) {
+    var box = el('resultados');
+    box.innerHTML = '<div class="aviso ' + (tipo || 'info') + '">' + esc(msg) + '</div>';
+    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // ---------- resultados / retroalimentación ----------
+  function mostrarResultados(modo, grade, autop, serverData) {
+    var revelar = modo === 'post' && CFG.revelarClave && CFG.revelarClave.post;
+    var pre = (serverData && serverData.pre) ? serverData.pre : null;
+    var preP = (pre && pre.puntajes) ? pre.puntajes : null;
+
+    var h = '<div class="resultados">';
+    h += '<h2>' + (modo === 'pre' ? 'Tu línea base (PRE)' : 'Tus resultados (POST)') + '</h2>';
+    h += '<div class="res-total">' + grade.pct.total + '%<small>Conocimiento total (Secciones A y B)' +
+      (preP ? deltaTxt(grade.pct.total, preP.total) : '') + '</small></div>';
+
+    // barras por eje + mensaje cualitativo + delta (si hay PRE)
+    DATA.ejes.forEach(function (e) {
+      var p = grade.pct[e.id];
+      var nv = nivelEje(p);
+      var d = (preP && preP[e.id] != null) ? deltaTxt(p, preP[e.id]) : '';
+      h += '<div class="barra-eje"><div class="lbl"><span>' + esc(e.nombre) +
+        ' <span class="nivel ' + nv.clase + '">' + nv.txt + '</span></span><span>' + p + '%' + d + '</span></div>' +
+        '<div class="barra-track"><div class="barra-fill" style="width:' + p + '%"></div></div></div>';
+    });
+
+    if (modo === 'pre') {
+      h += '<div class="aviso info">Esta es tu <strong>línea base</strong>. Al terminar el curso, responde la evaluación <strong>POST</strong> con el mismo correo para ver cuánto avanzaste. ' +
+        'Las respuestas correctas se mostrarán al final del POST.</div>';
+    } else if (preP) {
+      h += '<div class="aviso info">Comparado con tu PRE, tu conocimiento total pasó de <strong>' + preP.total +
+        '%</strong> a <strong>' + grade.pct.total + '%</strong>' + deltaTxt(grade.pct.total, preP.total) +
+        '. A continuación, la <strong>clave razonada</strong>.</div>';
+    } else {
+      h += '<div class="aviso info">¡Gracias! Tu formador podrá comparar tu PRE y tu POST por eje. ' +
+        '(No encontramos un PRE con este correo, así que no se muestra tu avance.) A continuación, la <strong>clave razonada</strong>.</div>';
+    }
+
+    // clave razonada solo en POST
+    if (revelar) {
+      h += '<h2 style="margin-top:24px">Clave razonada</h2>';
+      DATA.items.forEach(function (it) {
+        var g = grade.perItem[it.id];
+        var ok = g.points >= (it.tipo === 'emparejar' ? 1 : 1);
+        var estado = it.tipo === 'emparejar'
+          ? (g.correct + '/' + g.total + ' correctos')
+          : (g.points === 1 ? '✔ Correcta' : '✘ Incorrecta');
+        h += '<div class="clave-box"><div class="lbl">Ítem ' + it.id + ' — ' + estado + '</div>' +
+          renderRespuestaCorrecta(it) +
+          '<div>' + esc(it.clave) + '</div></div>';
+      });
+    }
+
+    h += '</div>';
+    var box = el('resultados');
+    box.innerHTML = h;
+    // ocultar el botón de enviar tras calificar
+    var btn = el('btnEnviar'); if (btn) btn.style.display = 'none';
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function deltaTxt(post, pre) {
+    var d = Math.round((post - pre) * 10) / 10;
+    if (d > 0) return ' <span class="delta up">▲ +' + d + '</span>';
+    if (d < 0) return ' <span class="delta down">▼ ' + d + '</span>';
+    return ' <span class="delta flat">＝ 0</span>';
+  }
+
+  function nivelEje(p) {
+    if (p >= 80) return { txt: 'Dominado', clase: 'ok' };
+    if (p >= 50) return { txt: 'En proceso', clase: 'medio' };
+    return { txt: 'Conviene repasar', clase: 'bajo' };
+  }
+
+  function renderRespuestaCorrecta(it) {
+    if (it.tipo === 'opcion_unica' || it.tipo === 'caso') {
+      return '<div><em>Respuesta correcta:</em> ' + esc(it.opciones[it.respuesta]) + '</div>';
+    }
+    if (it.tipo === 'emparejar') {
+      var mapTxt = it.columnaA.map(function (a) {
+        var bId = it.respuesta[a.id];
+        var b = it.columnaB.filter(function (x) { return x.id === bId; })[0];
+        return esc(a.texto) + ' → ' + (b ? esc(b.texto) : esc(bId));
+      }).join('; ');
+      return '<div><em>Emparejamiento correcto:</em> ' + mapTxt + '</div>';
+    }
+    return '';
+  }
+
+  // ---------- arranque ----------
+  function init() {
+    var modo = getModo();
+    if (!modo) { renderChooser(); return; }
+    renderEval(modo);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+</script>
+</body>
+</html>

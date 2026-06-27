@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tablero del formador · Evaluaciones ASC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --morado:#622599;--morado-osc:#4a1c75;--amarillo:#ffe675;--azul:#00afef;
+    --verde:#2e9e5b;--rojo:#d64545;--gris:#636363;--bg:#f5f3f9;--card:#fff;
+    --texto:#2b2b2b;--borde:#e3dcef;--radio:12px;--sombra:0 2px 10px rgba(98,37,153,.08);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--texto);line-height:1.6}
+  .wrap{max-width:920px;margin:0 auto;padding:18px}
+  .head{background:linear-gradient(135deg,var(--morado),var(--morado-osc));color:#fff;border-radius:var(--radio);padding:22px 20px;box-shadow:var(--sombra)}
+  .head h1{margin:0 0 4px;font-size:1.3rem}
+  .head p{margin:0;font-size:.85rem;opacity:.9}
+  .card{background:var(--card);border:1px solid var(--borde);border-radius:var(--radio);padding:18px 20px;margin:16px 0;box-shadow:var(--sombra)}
+  .card h2{color:var(--morado);margin:0 0 12px;font-size:1.05rem}
+  label{font-weight:600;font-size:.9rem;display:block;margin-bottom:6px}
+  input{width:100%;padding:11px;border:1.5px solid var(--borde);border-radius:10px;font-family:inherit;font-size:.95rem}
+  input:focus{outline:2px solid var(--morado);border-color:var(--morado)}
+  .btn{background:var(--morado);color:#fff;border:0;padding:12px 24px;border-radius:10px;font-family:inherit;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:10px}
+  .btn:hover{background:var(--morado-osc)}
+  .btn:disabled{background:#b9a9d1;cursor:not-allowed}
+  .kpis{display:flex;gap:12px;flex-wrap:wrap}
+  .kpi{flex:1 1 140px;background:#f8f5fc;border-radius:10px;padding:14px;text-align:center}
+  .kpi .n{font-size:1.8rem;font-weight:800;color:var(--morado)}
+  .kpi .l{font-size:.78rem;color:var(--gris);font-weight:600}
+  table{width:100%;border-collapse:collapse;font-size:.88rem}
+  th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--borde)}
+  th{color:var(--morado);font-size:.8rem;text-transform:uppercase;letter-spacing:.03em}
+  td.num,th.num{text-align:right}
+  .delta{font-weight:700}
+  .delta.up{color:var(--verde)}.delta.down{color:var(--rojo)}.delta.flat{color:var(--gris)}
+  .alerta{background:#fbeaea;border:1px solid var(--rojo);color:#8a2a2a;border-radius:8px;padding:6px 10px;font-size:.82rem;margin-top:4px;display:inline-block}
+  .ok-chip{background:#eaf7ef;border:1px solid var(--verde);color:#1f6b3d;border-radius:8px;padding:6px 10px;font-size:.82rem;margin-top:4px;display:inline-block}
+  .bar{background:#ece5f6;border-radius:999px;height:10px;overflow:hidden;margin-top:3px}
+  .bar > i{display:block;height:100%;border-radius:999px}
+  .bar .pre{background:#b9a9d1}
+  .bar .post{background:linear-gradient(90deg,var(--morado),var(--azul))}
+  .aviso{border-radius:10px;padding:12px 14px;font-size:.9rem;margin:12px 0}
+  .aviso.warn{background:#fff6e0;border:1px solid var(--amarillo);color:#6b5300}
+  .aviso.err{background:#fbeaea;border:1px solid var(--rojo);color:#8a2a2a}
+  .justif{border-left:4px solid var(--azul);background:#f0faff;padding:8px 12px;border-radius:8px;margin:8px 0;font-size:.86rem}
+  .justif .meta{color:var(--gris);font-size:.78rem}
+  .muted{color:var(--gris);font-size:.82rem}
+  .footer{text-align:center;color:var(--gris);font-size:.78rem;margin:24px 0 10px}
+  @media(max-width:560px){table{font-size:.8rem}th,td{padding:7px 5px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="head">
+    <h1>Tablero del formador</h1>
+    <p>Evaluación de Apropiación · comparación PRE → POST por eje</p>
+  </div>
+
+  <div class="card" id="loginCard">
+    <h2>Acceso</h2>
+    <label for="evalId">Evaluación</label>
+    <input id="evalId" value="metodo-scout">
+    <label for="token" style="margin-top:12px">Token de formador (ADMIN)</label>
+    <input id="token" type="password" placeholder="Pega aquí el ADMIN_TOKEN" autocomplete="off">
+    <button class="btn" id="cargar">Cargar resultados</button>
+    <div id="loginMsg"></div>
+    <p class="muted" style="margin-top:12px">El token no se guarda ni se publica; queda solo en esta sesión del navegador.</p>
+  </div>
+
+  <div id="panel"></div>
+  <p class="footer">Asociación Scouts de Colombia · 2026</p>
+</main>
+
+<script>
+// La URL del backend NO es secreta; el token SÍ (se pide arriba, nunca se incrusta).
+var BACKEND_URL = "https://script.google.com/macros/s/AKfycbwMegwOg7CRRySbOc_oa8izN3HpMUMwu9oJ8G-y937T8TxV9SKa6i33BvPWWCci4h3cxg/exec";
+var META = null; // JSON de la evaluación (etiquetas)
+
+function el(id){return document.getElementById(id);}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function r1(n){return Math.round(n*10)/10;}
+function num(v){var n=parseFloat(v);return isNaN(n)?null:n;}
+
+function jsonp(url){
+  return new Promise(function(resolve,reject){
+    var cb='__dash_'+Date.now()+'_'+Math.floor(Math.random()*1e6);
+    var s=document.createElement('script');
+    var t=setTimeout(function(){clean();reject(new Error('timeout'));},15000);
+    function clean(){clearTimeout(t);try{delete window[cb];}catch(e){window[cb]=undefined;}if(s.parentNode)s.parentNode.removeChild(s);}
+    window[cb]=function(d){clean();resolve(d);};
+    s.onerror=function(){clean();reject(new Error('error de red'));};
+    s.src=url+(url.indexOf('?')>-1?'&':'?')+'callback='+cb;
+    document.body.appendChild(s);
+  });
+}
+
+function deltaSpan(d){
+  d=r1(d);
+  if(d>0) return '<span class="delta up">▲ +'+d+'</span>';
+  if(d<0) return '<span class="delta down">▼ '+d+'</span>';
+  return '<span class="delta flat">＝ 0</span>';
+}
+
+function loadMeta(evalId){
+  return fetch('data/'+evalId+'.json').then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});
+}
+
+el('cargar').addEventListener('click', function(){
+  var token=el('token').value.trim();
+  var evalId=el('evalId').value.trim()||'metodo-scout';
+  if(!token){ el('loginMsg').innerHTML='<div class="aviso err">Ingresa el token de formador.</div>'; return; }
+  var btn=el('cargar'); btn.disabled=true; btn.textContent='Cargando…';
+  el('loginMsg').innerHTML='';
+  loadMeta(evalId).then(function(meta){
+    META=meta;
+    var url=BACKEND_URL+'?action=dashboard&token='+encodeURIComponent(token)+'&evaluacionId='+encodeURIComponent(evalId);
+    return jsonp(url);
+  }).then(function(data){
+    btn.disabled=false; btn.textContent='Cargar resultados';
+    if(!data||!data.ok){
+      el('loginMsg').innerHTML='<div class="aviso err">'+esc((data&&data.error)||'No se pudo cargar. Verifica el token.')+'</div>';
+      return;
+    }
+    render(data.registros||[]);
+  }).catch(function(err){
+    btn.disabled=false; btn.textContent='Cargar resultados';
+    el('loginMsg').innerHTML='<div class="aviso err">Error: '+esc(err.message)+'</div>';
+  });
+});
+
+function render(registros){
+  // Último PRE y último POST por correo (orden de aparición = orden de envío)
+  var pres={}, posts={};
+  registros.forEach(function(r){
+    var c=String(r.correo||'').toLowerCase();
+    if(!c) return;
+    if(r.modo==='pre') pres[c]=r; else if(r.modo==='post') posts[c]=r;
+  });
+  var correosPre=Object.keys(pres), correosPost=Object.keys(posts);
+  var union={}; correosPre.concat(correosPost).forEach(function(c){union[c]=1;});
+  var matched=Object.keys(union).filter(function(c){return pres[c]&&posts[c];});
+
+  var ejes=(META&&META.ejes)?META.ejes:[];
+  var h='';
+
+  // KPIs
+  h+='<div class="card"><h2>Resumen</h2><div class="kpis">'+
+     kpi(Object.keys(union).length,'Participantes')+
+     kpi(correosPre.length,'Con PRE')+
+     kpi(correosPost.length,'Con POST')+
+     kpi(matched.length,'Emparejados (PRE+POST)')+
+     '</div>';
+  if(!matched.length) h+='<div class="aviso warn">Aún no hay participantes con PRE y POST emparejados. El avance se calcula solo sobre quienes completaron ambos (mismo correo).</div>';
+  h+='</div>';
+
+  // Conocimiento por eje (promedio del grupo emparejado)
+  if(matched.length){
+    h+='<div class="card"><h2>Conocimiento por eje (emparejados: '+matched.length+')</h2>';
+    h+='<table><thead><tr><th>Eje</th><th class="num">PRE</th><th class="num">POST</th><th class="num">Avance</th></tr></thead><tbody>';
+    var sinMejora=[];
+    ejes.forEach(function(e){
+      var pre=avg(matched.map(function(c){return num(pres[c].puntajes&&pres[c].puntajes[e.id]);}));
+      var post=avg(matched.map(function(c){return num(posts[c].puntajes&&posts[c].puntajes[e.id]);}));
+      if(pre==null||post==null) return;
+      var d=post-pre;
+      if(d<=0) sinMejora.push(e.nombre);
+      h+='<tr><td>'+esc(e.nombre)+
+         '<div class="bar"><i class="pre" style="width:'+pre+'%"></i></div>'+
+         '<div class="bar"><i class="post" style="width:'+post+'%"></i></div></td>'+
+         '<td class="num">'+r1(pre)+'%</td><td class="num">'+r1(post)+'%</td>'+
+         '<td class="num">'+deltaSpan(d)+'</td></tr>';
+    });
+    // Total
+    var preT=avg(matched.map(function(c){return num(pres[c].pct_total);}));
+    var postT=avg(matched.map(function(c){return num(posts[c].pct_total);}));
+    h+='<tr style="font-weight:700"><td>TOTAL</td><td class="num">'+r1(preT)+'%</td><td class="num">'+r1(postT)+'%</td><td class="num">'+deltaSpan(postT-preT)+'</td></tr>';
+    h+='</tbody></table>';
+    h+='<p class="muted" style="margin-top:8px">Barra clara = PRE · barra morada = POST.</p>';
+    if(sinMejora.length) h+='<div class="alerta">⚠ Ejes sin mejora (revisar ese bloque del curso): '+esc(sinMejora.join(', '))+'</div>';
+    else h+='<div class="ok-chip">✔ Todos los ejes muestran avance.</div>';
+    h+='</div>';
+
+    // Autopercepción
+    if(META&&META.autopercepcion){
+      var afs=META.autopercepcion.afirmaciones||[];
+      h+='<div class="card"><h2>Autopercepción (escala 1–5, emparejados)</h2><table><thead><tr><th>Afirmación</th><th class="num">PRE</th><th class="num">POST</th><th class="num">Δ</th></tr></thead><tbody>';
+      afs.forEach(function(af,i){
+        var pre=avg(matched.map(function(c){var a=pres[c].autopercepcion;return a&&a[i]!=null?num(a[i]):null;}));
+        var post=avg(matched.map(function(c){var a=posts[c].autopercepcion;return a&&a[i]!=null?num(a[i]):null;}));
+        if(pre==null||post==null) return;
+        h+='<tr><td>'+esc(af)+'</td><td class="num">'+r1(pre)+'</td><td class="num">'+r1(post)+'</td><td class="num">'+deltaSpan(post-pre)+'</td></tr>';
+      });
+      h+='</tbody></table></div>';
+    }
+  }
+
+  // Tabla por participante
+  h+='<div class="card"><h2>Por participante</h2><table><thead><tr><th>Correo</th><th>Rama</th><th class="num">PRE</th><th class="num">POST</th><th class="num">Avance</th></tr></thead><tbody>';
+  Object.keys(union).sort().forEach(function(c){
+    var pre=pres[c], post=posts[c];
+    var preV=pre?num(pre.pct_total):null, postV=post?num(post.pct_total):null;
+    var rama=(post&&post.rama)||(pre&&pre.rama)||'—';
+    var d=(preV!=null&&postV!=null)?deltaSpan(postV-preV):'<span class="muted">—</span>';
+    h+='<tr><td>'+esc(c)+'</td><td>'+esc(rama)+'</td>'+
+       '<td class="num">'+(preV!=null?preV+'%':'—')+'</td>'+
+       '<td class="num">'+(postV!=null?postV+'%':'—')+'</td>'+
+       '<td class="num">'+d+'</td></tr>';
+  });
+  h+='</tbody></table></div>';
+
+  // Justificaciones (evidencia cualitativa)
+  var casos=(META&&META.items)?META.items.filter(function(it){return it.tipo==='caso';}):[];
+  if(casos.length){
+    h+='<div class="card"><h2>Justificaciones (evidencia cualitativa · no puntúan)</h2>';
+    var hayAlguna=false;
+    Object.keys(union).sort().forEach(function(c){
+      var rec=posts[c]||pres[c];
+      var js=rec&&rec.justificaciones;
+      if(!js) return;
+      casos.forEach(function(it){
+        var txt=js[it.id];
+        if(txt&&String(txt).trim()){
+          hayAlguna=true;
+          h+='<div class="justif"><div class="meta">'+esc(c)+' · Ítem '+it.id+'</div>'+esc(txt)+'</div>';
+        }
+      });
+    });
+    if(!hayAlguna) h+='<p class="muted">Sin justificaciones registradas todavía.</p>';
+    h+='</div>';
+  }
+
+  el('panel').innerHTML=h;
+}
+
+function kpi(n,l){return '<div class="kpi"><div class="n">'+n+'</div><div class="l">'+esc(l)+'</div></div>';}
+function avg(arr){var v=arr.filter(function(x){return x!=null;});if(!v.length)return null;return v.reduce(function(a,b){return a+b;},0)/v.length;}
+</script>
+</body>
+</html>

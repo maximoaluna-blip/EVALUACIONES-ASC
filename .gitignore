@@ -1,0 +1,14 @@
+# Workspace local de clasp (config local + copia desplegable del backend)
+backend-clasp/
+
+# Config con la URL/token público del backend (se inyecta al build; no versionar)
+generador/backend.config.json
+
+# Código del backend con tokens reales (AUTH_TOKEN + ADMIN_TOKEN).
+# En el repo se versiona solo la plantilla redactada backend-apps-script.template.js
+generador/backend-apps-script.js
+
+# Sistema
+.DS_Store
+Thumbs.db
+node_modules/
