@@ -8,6 +8,9 @@ generador/backend.config.json
 # En el repo se versiona solo la plantilla redactada backend-apps-script.template.js
 generador/backend-apps-script.js
 
+# Documento privado con credenciales (tokens, IDs). NUNCA se publica.
+docs/CREDENCIALES-PRIVADAS.md
+
 # Sistema
 .DS_Store
 Thumbs.db
