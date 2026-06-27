@@ -132,6 +132,11 @@ IDs y URLs completos en [BACKEND.md](BACKEND.md). ⚠️ Antes de publicar el re
 
 ---
 
+## 6-bis. Calidad y pruebas
+
+- **Auditoría doctrinal:** ver [AUDITORIA-DOCTRINAL.md](AUDITORIA-DOCTRINAL.md) (contenido verificado contra fuentes oficiales).
+- **Pruebas E2E:** suite Playwright + axe en `PRUEBAS-E2E/` (smoke, accesibilidad WCAG AA, responsive, flujo PRE/POST con backend interceptado). Corre en **GitHub Actions** en cada push/PR a `main` (`.github/workflows/pruebas-e2e.yml`). La suite detectó y se corrigieron 2 problemas de accesibilidad (contraste AA y nombres accesibles en los selects de emparejar).
+
 ## 7. Convenciones del proyecto
 
 - **Una evaluación = un JSON** en `data/`. Nunca se edita el HTML generado a mano.

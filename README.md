@@ -63,6 +63,9 @@ EVALUACIONES-ASC/
 │
 ├── assets/                         ← Logos, favicon, tema
 │
+├── PRUEBAS-E2E/                    ← Suite Playwright + axe (smoke, a11y, responsive, flujo PRE/POST) ✅
+├── .github/workflows/              ← CI: corre la suite en cada push/PR a main ✅
+│
 └── docs/                           ← Documentación del proyecto
     ├── INDICE-PROYECTO.md          ← Índice maestro: arquitectura y estado ✅
     ├── MODELO-DATOS.md             ← Especificación del JSON de evaluación ✅
