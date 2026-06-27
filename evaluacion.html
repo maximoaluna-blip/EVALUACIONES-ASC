@@ -300,7 +300,34 @@ body {
 }
 .clave-box .lbl { font-weight: 700; color: #0a5c7a; }
 
+.fin-acciones { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--borde); text-align: center; }
+.fin-acciones .btn { max-width: 320px; }
+.btn-sec {
+  display: inline-block;
+  margin-top: 10px;
+  background: #fff;
+  color: var(--morado);
+  border: 2px solid var(--morado);
+  padding: 12px 24px;
+  border-radius: var(--radio);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  max-width: 320px;
+  width: 100%;
+}
+.btn-sec:hover { background: #f3edfa; }
+.fin-nota { font-size: 0.88rem; color: var(--gris); margin: 14px 0 0; }
+
 .footer { text-align: center; color: var(--gris); font-size: 0.78rem; margin: 26px 0 10px; }
+
+/* Al imprimir/guardar PDF: ocultar cabecera de marca y acciones, dejar solo el contenido útil. */
+@media print {
+  .eval-header, .fin-acciones, .footer { display: none !important; }
+  body { background: #fff; }
+  .resultados { box-shadow: none; }
+}
 
 @media (min-width: 700px) {
   .wrap { padding: 28px; }
@@ -754,11 +781,23 @@ window.__EVAL_BACKEND__ = {"url":"https://script.google.com/macros/s/AKfycbwMegw
       });
     }
 
+    // Cierre del flujo: acción clara para no dejar al usuario sin saber qué hacer.
+    h += '<div class="fin-acciones">';
+    h += '<a class="btn" href="index.html">Volver al inicio</a>';
+    if (modo === 'post') {
+      h += '<button type="button" class="btn-sec" id="btnImprimir">Guardar / imprimir mis resultados</button>';
+    }
+    h += '<p class="fin-nota">' + (modo === 'pre'
+      ? 'Ya puedes cerrar esta pestaña. Cuando termines el curso, vuelve a hacer el <strong>POST</strong> con el mismo correo.'
+      : '¡Gracias por completar la evaluación! Ya puedes cerrar esta pestaña.') + '</p>';
+    h += '</div>';
+
     h += '</div>';
     var box = el('resultados');
     box.innerHTML = h;
     // ocultar el botón de enviar tras calificar
     var btn = el('btnEnviar'); if (btn) btn.style.display = 'none';
+    var imp = el('btnImprimir'); if (imp) imp.addEventListener('click', function () { window.print(); });
     box.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 

@@ -291,7 +291,34 @@ body {
 }
 .clave-box .lbl { font-weight: 700; color: #0a5c7a; }
 
+.fin-acciones { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--borde); text-align: center; }
+.fin-acciones .btn { max-width: 320px; }
+.btn-sec {
+  display: inline-block;
+  margin-top: 10px;
+  background: #fff;
+  color: var(--morado);
+  border: 2px solid var(--morado);
+  padding: 12px 24px;
+  border-radius: var(--radio);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  max-width: 320px;
+  width: 100%;
+}
+.btn-sec:hover { background: #f3edfa; }
+.fin-nota { font-size: 0.88rem; color: var(--gris); margin: 14px 0 0; }
+
 .footer { text-align: center; color: var(--gris); font-size: 0.78rem; margin: 26px 0 10px; }
+
+/* Al imprimir/guardar PDF: ocultar cabecera de marca y acciones, dejar solo el contenido útil. */
+@media print {
+  .eval-header, .fin-acciones, .footer { display: none !important; }
+  body { background: #fff; }
+  .resultados { box-shadow: none; }
+}
 
 @media (min-width: 700px) {
   .wrap { padding: 28px; }

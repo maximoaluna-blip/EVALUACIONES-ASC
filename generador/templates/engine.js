@@ -438,11 +438,23 @@
       });
     }
 
+    // Cierre del flujo: acción clara para no dejar al usuario sin saber qué hacer.
+    h += '<div class="fin-acciones">';
+    h += '<a class="btn" href="index.html">Volver al inicio</a>';
+    if (modo === 'post') {
+      h += '<button type="button" class="btn-sec" id="btnImprimir">Guardar / imprimir mis resultados</button>';
+    }
+    h += '<p class="fin-nota">' + (modo === 'pre'
+      ? 'Ya puedes cerrar esta pestaña. Cuando termines el curso, vuelve a hacer el <strong>POST</strong> con el mismo correo.'
+      : '¡Gracias por completar la evaluación! Ya puedes cerrar esta pestaña.') + '</p>';
+    h += '</div>';
+
     h += '</div>';
     var box = el('resultados');
     box.innerHTML = h;
     // ocultar el botón de enviar tras calificar
     var btn = el('btnEnviar'); if (btn) btn.style.display = 'none';
+    var imp = el('btnImprimir'); if (imp) imp.addEventListener('click', function () { window.print(); });
     box.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
