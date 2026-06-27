@@ -12,6 +12,7 @@ async function fillEvaluation(page, { modo, correct = true, correo = 'e2e@exampl
       const rama = document.getElementById('campo-rama');
       if (rama && rama.options.length > 1) rama.value = rama.options[1].value;
       set('campo-experiencia', '3');
+      const chk = document.getElementById('consentChk'); if (chk) chk.checked = true;
     } else {
       const c = document.getElementById('campo-correo'); if (c) c.value = correo;
     }

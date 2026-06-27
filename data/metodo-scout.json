@@ -23,6 +23,12 @@
       { "id": "experiencia", "etiqueta": "Años de experiencia como voluntario", "tipo": "numero", "requerido": true, "min": 0, "max": 80 }
     ]
   },
+  "consentimiento": {
+    "soloEn": "pre",
+    "titulo": "Tratamiento de datos personales",
+    "texto": "Autorizo a la Asociación Scouts de Colombia a tratar mis datos (nombre, correo, rama y años de experiencia) con el único fin de evaluar y mejorar la formación. No se comparten con terceros y puedo solicitar su eliminación. Conforme a la Ley 1581 de 2012 (Habeas Data).",
+    "etiqueta": "He leído y autorizo el tratamiento de mis datos."
+  },
   "ejes": [
     { "id": "eje1", "nombre": "Eje 1 · Principios educativos", "seccion": "A", "items": [1, 2, 3, 4, 5, 6, 7] },
     { "id": "eje2", "nombre": "Eje 2 · El Método Scout", "seccion": "A", "items": [8, 9, 10, 11, 12, 13, 14] },

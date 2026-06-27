@@ -92,6 +92,11 @@
       html += renderAutopercepcion(DATA.autopercepcion);
     }
 
+    // Consentimiento de datos (solo PRE)
+    if (modo === 'pre' && DATA.consentimiento) {
+      html += renderConsentimiento(DATA.consentimiento);
+    }
+
     html += '<button type="submit" class="btn" id="btnEnviar">Calificar mis respuestas</button>';
     html += '</form>';
     html += '<div id="resultados"></div>';
@@ -160,6 +165,14 @@
     }
     h += '</fieldset>';
     return h;
+  }
+
+  function renderConsentimiento(c) {
+    return '<div class="eje"><div class="item consent">' +
+      (c.titulo ? '<div class="afirm">' + esc(c.titulo) + '</div>' : '') +
+      '<p class="consent-texto">' + esc(c.texto) + '</p>' +
+      '<label class="consent-check"><input type="checkbox" id="consentChk"> <span>' + esc(c.etiqueta) + '</span></label>' +
+      '</div></div>';
   }
 
   function renderAutopercepcion(ap) {
@@ -282,6 +295,11 @@
       });
     } else if (!idObj.correo) {
       faltan.push('tu correo electrónico');
+    }
+    // consentimiento (solo PRE)
+    if (modo === 'pre' && DATA.consentimiento) {
+      var chk = el('consentChk');
+      if (!chk || !chk.checked) faltan.push('autorizar el tratamiento de datos');
     }
     // ítems
     DATA.items.forEach(function (it) {

@@ -148,6 +148,19 @@ La **opción** se califica como opción única. La **justificación** se guarda 
 
 ---
 
+## 5-bis. `consentimiento` — aviso de tratamiento de datos (solo PRE)
+
+```jsonc
+"consentimiento": {
+  "soloEn": "pre",
+  "titulo": "Tratamiento de datos personales",
+  "texto": "Autorizo a la ASC a tratar mis datos … (Ley 1581 de 2012).",
+  "etiqueta": "He leído y autorizo el tratamiento de mis datos."
+}
+```
+
+Se muestra solo en PRE (donde se recogen los datos personales) como una casilla **obligatoria**: sin marcarla, el formulario no se envía. Cumple la Ley 1581 de 2012 (Habeas Data).
+
 ## 6. `autopercepcion` — Sección C
 
 ```jsonc

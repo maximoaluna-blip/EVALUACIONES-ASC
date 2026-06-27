@@ -26,6 +26,20 @@ test('PRE: califica, NO revela clave y envía payload modo=pre', async ({ page }
   expect(env.puntajes.total, 'puntaje total numérico').toEqual(expect.any(Number));
 });
 
+test('PRE: sin autorizar el tratamiento de datos, NO se envía', async ({ page }) => {
+  const capturado = await stubBackend(page);
+  await page.goto('evaluacion.html?modo=pre', { waitUntil: 'domcontentloaded' });
+
+  await fillEvaluation(page, { modo: 'pre', correct: true });
+  // Desmarcar el consentimiento que fillEvaluation activó.
+  await page.evaluate(() => { const c = document.getElementById('consentChk'); if (c) c.checked = false; });
+  await page.locator('#evalForm').evaluate((f) => f.requestSubmit());
+
+  await expect(page.locator('.aviso.warn')).toContainText(/tratamiento de datos/i);
+  await expect(page.locator('.res-total')).toHaveCount(0); // no hay resultados
+  expect(capturado.length, 'no debe enviar al backend').toBe(0);
+});
+
 test('POST: revela clave, muestra delta PRE→POST y envía payload modo=post', async ({ page }) => {
   // El backend devuelve un PRE bajo para que el delta sea positivo y visible.
   const preStub = {

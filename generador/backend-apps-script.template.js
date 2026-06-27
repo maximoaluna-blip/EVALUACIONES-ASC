@@ -1,8 +1,9 @@
 // ============================================================================
-// ⚠ PLANTILLA SIN SECRETOS (segura para repo público).
+// PLANTILLA SIN SECRETOS (segura para repo publico).
 // La copia con los tokens reales vive en backend-clasp/Code.js (gitignored) y
 // desplegada en el proyecto Apps Script. Reemplaza CAMBIAR_TOKEN_* por los
 // valores reales en la copia local. Ver docs/BACKEND.md.
+// ============================================================================
 // ============================================================================
 // BACKEND · EVALUACIONES-ASC · Asociación Scouts de Colombia
 // Google Apps Script (corre en servidores de Google, NO en Node).
@@ -73,6 +74,14 @@ function autorizar() {
 
 // --- POST: guardar un envío ---
 function doPost(e) {
+  // Bloqueo: evita que dos envíos simultáneos (p. ej. al cerrar un curso) choquen
+  // al escribir en la hoja. Cada escritura espera su turno hasta 20 s.
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(20000);
+  } catch (errLock) {
+    return json_({ ok: false, error: 'Servidor ocupado, vuelve a intentar en unos segundos.' });
+  }
   try {
     var body = (e && e.postData && e.postData.contents) ? JSON.parse(e.postData.contents) : {};
     if (body.token !== AUTH_TOKEN) return json_({ ok: false, error: 'Token inválido' });
@@ -102,6 +111,8 @@ function doPost(e) {
     return json_({ ok: true, guardado: true, modo: modo });
   } catch (err) {
     return json_({ ok: false, error: String(err) });
+  } finally {
+    lock.releaseLock();
   }
 }
 
@@ -149,6 +160,20 @@ function doGet(e) {
       };
     });
     return json_({ ok: true, total: registros.length, registros: registros }, cb);
+  }
+
+  // Mantenimiento: borrar todas las filas de un correo concreto. Requiere ADMIN_TOKEN.
+  if (action === 'purgar') {
+    if (p.token !== ADMIN_TOKEN) return json_({ ok: false, error: 'Token de administrador inválido' }, cb);
+    var correoDel = (p.correo || '').toString().trim().toLowerCase();
+    if (!correoDel) return json_({ ok: false, error: 'Falta correo' }, cb);
+    var shD = getSheet_();
+    var valsD = shD.getDataRange().getValues();
+    var nD = 0;
+    for (var k = valsD.length - 1; k >= 1; k--) {
+      if (String(valsD[k][3] || '').toLowerCase() === correoDel) { shD.deleteRow(k + 1); nD++; }
+    }
+    return json_({ ok: true, borradas: nD }, cb);
   }
 
   // Mantenimiento: borrar filas de prueba (correos *@example.com). Requiere ADMIN_TOKEN.

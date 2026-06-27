@@ -126,5 +126,9 @@ Patrón previsto (mismo que INDUCCION-*):
 - Nota: el `AUTH_TOKEN` es necesariamente público (va en `evaluacion.html` para permitir el envío anónimo); es un token de solo-escritura. El `ADMIN_TOKEN` es el único realmente sensible.
 - Endurecimiento futuro opcional: mover ambos tokens a **Script Properties** (`PropertiesService`) — requiere un paso manual en Configuración del proyecto, no aporta seguridad extra mientras el código no sea público.
 
-### Endpoint de mantenimiento
-`GET ?action=purgar_pruebas&token=<ADMIN_TOKEN>` → borra las filas con correo `*@example.com`. Útil tras pruebas.
+### Concurrencia
+`doPost` usa `LockService.getScriptLock()` (espera hasta 20 s) para serializar las escrituras: aunque una cohorte entera envíe a la vez, no se corrompe ni se pierde ninguna fila.
+
+### Endpoints de mantenimiento (requieren ADMIN_TOKEN)
+- `GET ?action=purgar_pruebas&token=<ADMIN_TOKEN>` → borra filas con correo `*@example.com`.
+- `GET ?action=purgar&token=<ADMIN_TOKEN>&correo=<correo>` → borra todas las filas de un correo concreto.

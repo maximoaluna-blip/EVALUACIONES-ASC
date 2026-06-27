@@ -214,6 +214,12 @@ body {
 .escala-opts label.sel { background: var(--morado); color: #fff; border-color: var(--morado); }
 .escala-leyenda { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--gris); margin-top: 4px; }
 
+/* --- Consentimiento de datos --- */
+.item.consent { border-color: var(--azul); background: #f0faff; }
+.consent-texto { font-size: 0.86rem; color: #333; margin: 6px 0 12px; }
+.consent-check { display: flex; align-items: flex-start; gap: 10px; font-weight: 600; font-size: 0.92rem; cursor: pointer; }
+.consent-check input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--morado); flex-shrink: 0; }
+
 /* --- Campos de identificación --- */
 .campo { margin-bottom: 14px; }
 .campo label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; }
