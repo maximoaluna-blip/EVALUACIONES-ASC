@@ -19,7 +19,7 @@
     "campos": [
       { "id": "nombre", "etiqueta": "Nombre completo", "tipo": "texto", "requerido": true },
       { "id": "correo", "etiqueta": "Correo electrónico", "tipo": "email", "requerido": true, "nota": "Es la llave para emparejar tu PRE con tu POST. Usa el mismo en ambos." },
-      { "id": "rama", "etiqueta": "Rama / unidad en la que sirves", "tipo": "seleccion", "requerido": true, "opciones": ["Familia (Cachorros)", "Manada (Lobatos)", "Tropa (Scouts)", "Comunidad (Caminantes)", "Clan (Rovers)", "No sirvo en una rama por ahora", "Otra"] },
+      { "id": "rama", "etiqueta": "Rama / unidad en la que sirves", "tipo": "seleccion", "requerido": true, "opciones": ["Familia (Cachorros)", "Manada (Lobatos)", "Tropa (Scouts)", "Comunidad (Nómadas Scout)", "Clan (Rovers)", "No sirvo en una rama por ahora", "Otra"] },
       { "id": "experiencia", "etiqueta": "Años de experiencia como voluntario", "tipo": "numero", "requerido": true, "min": 0, "max": 80 }
     ]
   },
@@ -81,7 +81,7 @@
     },
     {
       "id": 5, "eje": "eje1", "seccion": "A", "tipo": "emparejar", "dificultad": "media",
-      "enunciado": "Empareja cada pilar de la educación con su sentido.",
+      "enunciado": "Empareja cada uno de los cuatro aprendizajes de la educación (conocer, hacer, vivir juntos y ser) con su sentido.",
       "columnaA": [
         { "id": "1", "texto": "Conocer" },
         { "id": "2", "texto": "Hacer" },
@@ -231,7 +231,7 @@
       "id": 16, "eje": "eje3", "seccion": "A", "tipo": "opcion_unica", "dificultad": "alta",
       "enunciado": "Al pasar de una rama a otra, ¿qué permanece y qué cambia?",
       "opciones": [
-        "Permanecen los elementos del Método y los valores; cambian el lenguaje, la autonomía, la agrupación, el desafío y el rol del adulto.",
+        "Permanecen los elementos del Método y los valores; cambian el lenguaje, la autonomía, los pequeños grupos, el desafío y el rol del adulto.",
         "Cambia el Método completo; cada rama tiene el suyo.",
         "Permanece todo exactamente igual en todas las ramas.",
         "Cambian los valores y permanece solo el uniforme."
