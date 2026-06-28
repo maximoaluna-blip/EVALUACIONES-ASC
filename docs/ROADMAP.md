@@ -4,7 +4,10 @@ Plan de construcción por hitos. Fase 1 = curso *Método Scout (Un Día)* de pun
 
 ---
 
-## Fase 1 — Evaluación Método Scout (en curso)
+> **Estado al cierre (2026-06-27): Fase 1 COMPLETA y en producción; piloto lanzado.**
+> App: https://maximoaluna-blip.github.io/EVALUACIONES-ASC/ · Sheet limpio (0 registros) listo para datos reales.
+
+## Fase 1 — Evaluación Método Scout (✅ completa)
 
 | Hito | Entregable | Depende de | Estado |
 |---|---|---|---|
@@ -16,15 +19,27 @@ Plan de construcción por hitos. Fase 1 = curso *Método Scout (Un Día)* de pun
 | 6 | **Tablero del formador**: PRE vs POST por eje, alertas, justificaciones | 5 | ✅ Hecho (`dashboard-formador.html`; pide ADMIN_TOKEN, verificado con datos reales) |
 | 7 | **Seguridad y despliegue**: secretos fuera del repo, limpieza de pruebas, publicación en GitHub Pages | 4, 5, 6 | ✅ Hecho — en vivo en https://maximoaluna-blip.github.io/EVALUACIONES-ASC/ |
 
-### Definición de "terminado" (Fase 1)
-- Una persona puede hacer el PRE en su celular, recibir su puntaje por eje, y luego el POST con su mejora y la clave.
-- El formador ve, en un tablero, la mejora del grupo por eje y las alertas.
-- Todo desplegado y probado en celular y PC.
+### Definición de "terminado" (Fase 1) — cumplida
+- Una persona puede hacer el PRE en su celular, recibir su puntaje por eje, y luego el POST con su mejora y la clave. ✅
+- El formador ve, en un tablero, la mejora del grupo por eje y las alertas. ✅
+- Todo desplegado y probado en celular y PC. ✅
 
 ---
 
-## Hitos que NO dependen de la cuenta Google
-Se pueden construir y mostrar en local sin desplegar nada: **2, 3, 4** (y la maqueta del 6). El backend (5) y el despliegue (7) requieren tu intervención.
+## Endurecimiento pre-piloto (✅ 2026-06-27)
+
+| Ajuste | Estado |
+|---|---|
+| `LockService` en `doPost` (escrituras concurrentes seguras para una cohorte completa) | ✅ backend v5, probado en vivo |
+| Consentimiento de datos obligatorio en PRE (Ley 1581 / Habeas Data) | ✅ + test e2e |
+| UX de cierre: "Volver al inicio" + (POST) "Guardar/imprimir" con `@media print` | ✅ |
+| Limpieza de filas de prueba (endpoint `purgar` por correo) | ✅ Sheet en 0 |
+| Suite E2E ampliada a 23 pruebas (smoke, a11y AA, responsive, flujo PRE/POST, consentimiento) | ✅ verde local + CI |
+
+## Calidad aplicada
+- **Doctrinal:** ✅ auditada (0 críticos). Ver [AUDITORIA-DOCTRINAL.md](AUDITORIA-DOCTRINAL.md).
+- **Operativa (E2E + a11y):** ✅ 23 tests en CI.
+- **Pedagógica:** ⬜ pendiente/opcional — disponible el pipeline `/auditar-pedagogia` (calidad de ítems: comprensión/aplicación vs. memoria, distractores). Aún no ejecutado sobre esta evaluación.
 
 ---
 
@@ -35,10 +50,11 @@ Se pueden construir y mostrar en local sin desplegar nada: **2, 3, 4** (y la maq
 - Posible reutilización del PORTAL-ADMIN-ASC para ver evaluaciones junto con cursos.
 
 ## Fase 3 — Mejoras (futuro / a evaluar)
-- Aviso y registro de tratamiento de datos personales.
+- Auditoría **pedagógica** de los ítems (`/auditar-pedagogia`).
 - Rate limiting y anti-duplicados por correo.
 - Reportes individuales en PDF para cada participante.
 - Integración con la plataforma de cursos (lanzar la evaluación desde el curso).
+- Subir las actions del workflow de Node 20 a `@v5` cuando salga (aviso de deprecación de GitHub).
 
 ---
 
@@ -46,7 +62,10 @@ Se pueden construir y mostrar en local sin desplegar nada: **2, 3, 4** (y la maq
 
 | Riesgo | Mitigación |
 |---|---|
+| Cohorte enviando a la vez → escrituras chocan | ✅ `LockService` serializa las escrituras (backend v5). |
 | Participante usa correos distintos en PRE y POST → no empareja | Nota visible en el campo correo; el tablero marca "incompletos". |
 | Revelar clave en PRE invalida el POST | Bloqueado por diseño: `revelarClave.pre = false`. |
-| Cambios en el backend rompen el frontend | Contrato de endpoints documentado en [BACKEND.md](BACKEND.md); pruebas antes de publicar. |
-| Errores doctrinales en ítems/claves | Revisión con el agente `auditor-doctrinal-asc` antes de publicar. |
+| Datos personales sin consentimiento | ✅ Casilla obligatoria de tratamiento de datos en PRE (Ley 1581). |
+| Cambios en el backend rompen el frontend | Contrato de endpoints en [BACKEND.md](BACKEND.md) + suite E2E en CI. |
+| Errores doctrinales en ítems/claves | ✅ Auditoría doctrinal previa (`auditor-doctrinal-asc`). |
+| Variedad de dispositivos reales (Safari iOS / Android antiguos) | ⬜ No probado físicamente; primeros participantes en dispositivos diversos. |

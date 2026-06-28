@@ -64,6 +64,26 @@ Registro de las decisiones de diseño importantes y **por qué** se tomaron. For
 
 ---
 
+## D7 · `LockService` para escrituras concurrentes
+**Fecha:** 2026-06-27 · **Estado:** Aceptada
+
+**Contexto:** Una cohorte que cierra el curso puede enviar el POST casi a la vez; sin control, dos `appendRow` simultáneos pueden chocar.
+**Decisión:** Envolver la escritura de `doPost` en `LockService.getScriptLock()` (espera hasta 20 s).
+**Por qué:** Es la práctica recomendada de Apps Script para escrituras concurrentes en un Sheet; elimina el riesgo de pérdida/corrupción de filas sin infraestructura extra.
+**Consecuencias:** Backend v5. Cada envío espera su turno; imperceptible para el usuario.
+
+---
+
+## D8 · Consentimiento de datos obligatorio en PRE
+**Fecha:** 2026-06-27 · **Estado:** Aceptada
+
+**Contexto:** Se recogen datos personales (nombre, correo, rama, experiencia) y la Ley 1581 de 2012 (Habeas Data) exige autorización informada.
+**Decisión:** Casilla obligatoria en el PRE (donde se recogen los datos) con texto de tratamiento; sin marcarla no se envía. Vive en el JSON (`consentimiento`).
+**Por qué:** Cumplimiento legal mínimo + transparencia con el participante. Se exige solo en PRE porque es donde se capturan los datos.
+**Consecuencias:** Render + validación en el engine; cubierto por una prueba E2E.
+
+---
+
 ## Plantilla para nuevas decisiones
 
 ```

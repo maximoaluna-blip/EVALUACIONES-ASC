@@ -134,8 +134,10 @@ IDs y URLs completos en [BACKEND.md](BACKEND.md). ⚠️ Antes de publicar el re
 
 ## 6-bis. Calidad y pruebas
 
-- **Auditoría doctrinal:** ver [AUDITORIA-DOCTRINAL.md](AUDITORIA-DOCTRINAL.md) (contenido verificado contra fuentes oficiales).
-- **Pruebas E2E:** suite Playwright + axe en `PRUEBAS-E2E/` (smoke, accesibilidad WCAG AA, responsive, flujo PRE/POST con backend interceptado). Corre en **GitHub Actions** en cada push/PR a `main` (`.github/workflows/pruebas-e2e.yml`). La suite detectó y se corrigieron 2 problemas de accesibilidad (contraste AA y nombres accesibles en los selects de emparejar).
+- **Auditoría doctrinal:** ✅ [AUDITORIA-DOCTRINAL.md](AUDITORIA-DOCTRINAL.md) (0 críticos; contenido verificado contra fuentes oficiales 2026).
+- **Pruebas E2E + accesibilidad:** ✅ 23 tests Playwright + axe en `PRUEBAS-E2E/` (smoke, WCAG AA, responsive, flujo PRE/POST con backend interceptado, consentimiento). Corre en **GitHub Actions** en cada push/PR a `main`. Detectó y se corrigieron 2 problemas de accesibilidad (contraste AA; nombres accesibles en selects de emparejar).
+- **Auditoría pedagógica:** ⬜ pendiente/opcional — pipeline `/auditar-pedagogia` disponible (calidad de ítems: comprensión/aplicación vs. memoria, distractores). No ejecutado aún.
+- **Endurecimiento pre-piloto (2026-06-27):** `LockService` para escrituras concurrentes (backend v5), consentimiento de datos en PRE (Ley 1581), UX de cierre, y limpieza del Sheet. Detalle en [ROADMAP.md](ROADMAP.md).
 
 ## 7. Convenciones del proyecto
 
