@@ -84,6 +84,16 @@ Registro de las decisiones de diseño importantes y **por qué** se tomaron. For
 
 ---
 
+## D9 · Los ítems no cambian dentro de una cohorte; las versiones nuevas entran entre cohortes
+**Fecha:** 2026-09-14 · **Estado:** Aceptada
+
+**Contexto:** La auditoría pedagógica (`AUDITORIA-PEDAGOGICA.md`) encontró que en 18 de 19 ítems de opción la respuesta correcta es la más larga: el instrumento se puede aprobar sin saber. El corrector produjo una v2 (`data/metodo-scout-v2.json`, sesgo 7/19), auditada doctrinalmente (`AUDITORIA-DOCTRINAL-V2.md`). Pero el piloto ya corrió con la v1.
+**Decisión:** Ningún ítem se modifica mientras una cohorte esté entre su PRE y su POST. Las versiones nuevas se despliegan **entre cohortes**, con `evaluacionId` distinto (`metodo-scout-v2`), y el reemplazo de la v1 lo autoriza el dueño. La v1 queda como está hasta entonces (incluido el ítem 7, cuyo error doctrinal se corrige en la v2).
+**Por qué:** Cambiar un ítem a mitad de cohorte rompe la comparabilidad PRE↔POST, que es lo único que mide la app. Un instrumento con un sesgo conocido pero estable mide peor que uno corregido, pero uno cambiado a medias no mide nada.
+**Consecuencias:** `data/` puede contener más de una versión del mismo instrumento; el tablero del formador debe leer el `evaluacionId` para no mezclar cohortes; la auditoría pedagógica pasa a ser compuerta obligatoria (regla 3 del `CLAUDE.md`) y mide sesgo de longitud, no solo nivel cognitivo nominal.
+
+---
+
 ## Plantilla para nuevas decisiones
 
 ```

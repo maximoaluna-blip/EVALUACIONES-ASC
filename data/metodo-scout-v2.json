@@ -1,0 +1,740 @@
+{
+  "evaluacionId": "metodo-scout-v2",
+  "titulo": "Curso Método Scout (Un Día) · Evaluación de Apropiación",
+  "subtitulo": "Dirección Nacional de Adultos en el Movimiento · Coordinación de Formación",
+  "version": {
+    "numero": 2,
+    "fecha": "2026-09-14",
+    "origen": "docs/AUDITORIA-PEDAGOGICA.md",
+    "estado": "borrador — pendiente de auditoría doctrinal y de decisión del dueño (cambio de cohorte)"
+  },
+  "organizacion": "Asociación Scouts de Colombia",
+  "anio": 2026,
+  "enfoque": "CONCEPTUAL: los ítems evalúan la comprensión y aplicación de los conceptos, no la memorización de textos o etiquetas.",
+  "config": {
+    "barajarOpciones": true,
+    "umbralReferencia": 70,
+    "revelarClave": {
+      "pre": false,
+      "post": true
+    },
+    "emparejarMode": "proporcional",
+    "emparejarParcial": true
+  },
+  "identificacion": {
+    "seccion": "0",
+    "soloEn": "pre",
+    "descripcion": "Sección 0 · Identificación (solo PRE)",
+    "campos": [
+      {
+        "id": "nombre",
+        "etiqueta": "Nombre completo",
+        "tipo": "texto",
+        "requerido": true
+      },
+      {
+        "id": "correo",
+        "etiqueta": "Correo electrónico",
+        "tipo": "email",
+        "requerido": true,
+        "nota": "Es la llave para emparejar tu PRE con tu POST. Usa el mismo en ambos."
+      },
+      {
+        "id": "rama",
+        "etiqueta": "Rama / unidad en la que sirves",
+        "tipo": "seleccion",
+        "requerido": true,
+        "opciones": [
+          "Familia (Cachorros)",
+          "Manada (Lobatos)",
+          "Tropa (Scouts)",
+          "Comunidad (Nómadas Scout)",
+          "Clan (Rovers)",
+          "No sirvo en una rama por ahora",
+          "Otra"
+        ]
+      },
+      {
+        "id": "experiencia",
+        "etiqueta": "Años de experiencia como voluntario",
+        "tipo": "numero",
+        "requerido": true,
+        "min": 0,
+        "max": 80
+      }
+    ]
+  },
+  "consentimiento": {
+    "soloEn": "pre",
+    "titulo": "Tratamiento de datos personales",
+    "texto": "Autorizo a la Asociación Scouts de Colombia a tratar mis datos (nombre, correo, rama y años de experiencia) con el único fin de evaluar y mejorar la formación. No se comparten con terceros y puedo solicitar su eliminación. Conforme a la Ley 1581 de 2012 (Habeas Data).",
+    "etiqueta": "He leído y autorizo el tratamiento de mis datos."
+  },
+  "ejes": [
+    {
+      "id": "eje1",
+      "nombre": "Eje 1 · Principios educativos",
+      "seccion": "A",
+      "items": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "eje2",
+      "nombre": "Eje 2 · El Método Scout",
+      "seccion": "A",
+      "items": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "eje3",
+      "nombre": "Eje 3 · El Método en las ramas",
+      "seccion": "A",
+      "items": [
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "transversal",
+      "nombre": "Transversal · El aprendizaje por la experiencia",
+      "seccion": "A",
+      "items": [
+        20
+      ]
+    },
+    {
+      "id": "casos",
+      "nombre": "Sección B · Casos de juicio pedagógico",
+      "seccion": "B",
+      "items": [
+        21,
+        22
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "eje": "eje1",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "media",
+      "enunciado": "En la reunión de dirigentes, cuatro personas cuentan qué hacen los sábados. ¿Cuál de ellas está EDUCANDO en el sentido scout?",
+      "opciones": [
+        "Camilo: 'les enseño nudos, primeros auxilios y señales, paso a paso, hasta que los dominen todos'.",
+        "Diana: 'les propongo retos, ellos deciden cómo resolverlos y luego miramos juntos qué aprendieron'.",
+        "Andrés: 'les preparo juegos bien divertidos cada semana para que vuelvan con ganas el otro sábado'.",
+        "Laura: 'entreno a la tropa todo el semestre para que gane el concurso regional de campismo'."
+      ],
+      "respuesta": 1,
+      "clave": "Educar es acompañar el desarrollo integral y la autoeducación: Diana pone a los jóvenes a decidir y a mirar lo aprendido. Camilo instruye (transmite técnica), Andrés recrea (entretiene) y Laura persigue reconocimientos. Las tres cosas caben en el escultismo, pero como medios; el fin es educar."
+    },
+    {
+      "id": 2,
+      "eje": "eje1",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "media",
+      "enunciado": "Un padre de familia te dice: 'Lo que más me gusta del grupo es que mi hijo acampa y aprende a valerse solo'. Según la Misión del Movimiento, ¿qué le precisas?",
+      "opciones": [
+        "Que acampar y valerse solo son, justamente, el fin que persigue el escultismo.",
+        "Que eso son medios; el fin de la Misión es contribuir a la educación de su hijo.",
+        "Que lo central es que su hijo gane insignias que muestren todo lo que aprende.",
+        "Que lo importante es que aprenda el orden y la disciplina que da el uniforme."
+      ],
+      "respuesta": 1,
+      "clave": "La educación es el corazón de la Misión; la naturaleza, las insignias y el uniforme son medios para lograrla. Cuando un medio se vuelve el fin, el grupo puede ser muy activo y educar poco."
+    },
+    {
+      "id": 3,
+      "eje": "eje1",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "subtipo": "identificar_falsa",
+      "dificultad": "alta",
+      "enunciado": "Sobre el horizonte que plantea la Misión, ¿cuál afirmación es FALSA?",
+      "opciones": [
+        "Busca que cada persona se realice plenamente como individuo, según sus capacidades.",
+        "Busca que cada persona asuma un papel constructivo y activo en la sociedad.",
+        "Se cumple cuando el joven completa su progresión y recibe la insignia máxima de su rama.",
+        "Realización personal y compromiso con la comunidad se buscan a la vez, no por turnos."
+      ],
+      "respuesta": 2,
+      "clave": "FALSA la c: la Misión no se 'cumple' con una insignia; es un horizonte que articula realización personal y papel constructivo en la sociedad. Las insignias reconocen pasos en ese camino, no lo agotan."
+    },
+    {
+      "id": 4,
+      "eje": "eje1",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "alta",
+      "enunciado": "En el escultismo, la Promesa y la Ley funcionan, ante todo, como…",
+      "opciones": [
+        "un reglamento externo que el adulto impone y vigila para mantener el orden.",
+        "un compromiso libre con unos valores, que se vive y se renueva al crecer.",
+        "un requisito administrativo que se cumple para poder pasar a la siguiente rama.",
+        "una lista de conductas prohibidas que el joven debe aprenderse de memoria."
+      ],
+      "respuesta": 1,
+      "clave": "La Promesa y la Ley son un compromiso personal y libre con un sistema de valores: se viven en la práctica y se renuevan con la edad. Usadas como reglamento para vigilar o como trámite para 'subir de rama' dejan de educar y pasan a controlar."
+    },
+    {
+      "id": 5,
+      "eje": "eje1",
+      "seccion": "A",
+      "tipo": "emparejar",
+      "dificultad": "media",
+      "enunciado": "Empareja cada escena con el aprendizaje que más se ve en ella (conocer, hacer, vivir juntos o ser).",
+      "columnaA": [
+        {
+          "id": "1",
+          "texto": "Un scout entiende por qué el río crece después de la lluvia"
+        },
+        {
+          "id": "2",
+          "texto": "Una patrulla monta sola la carpa por primera vez"
+        },
+        {
+          "id": "3",
+          "texto": "Dos lobatos que no se soportaban terminan el juego como equipo"
+        },
+        {
+          "id": "4",
+          "texto": "Una rover decide, con criterio propio, qué quiere de su proyecto"
+        }
+      ],
+      "columnaB": [
+        {
+          "id": "A",
+          "texto": "Vivir juntos"
+        },
+        {
+          "id": "B",
+          "texto": "Conocer"
+        },
+        {
+          "id": "C",
+          "texto": "Hacer"
+        },
+        {
+          "id": "D",
+          "texto": "Ser"
+        }
+      ],
+      "respuesta": {
+        "1": "B",
+        "2": "C",
+        "3": "A",
+        "4": "D"
+      },
+      "clave": "Conocer es comprender el mundo (el río); hacer es el saber práctico en la acción (la carpa); vivir juntos es cooperar y convivir (los dos lobatos); ser es autonomía y juicio propio (la rover). Los cuatro se dan a la vez: el ejercicio es ver cuál predomina."
+    },
+    {
+      "id": 6,
+      "eje": "eje1",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "alta",
+      "enunciado": "En una salida, Mateo (Tropa) monta la carpa en cinco minutos porque lo ha hecho veinte veces, y Sara, recién llegada, se frustra y se rinde. ¿Qué le faltó a la actividad para respetar el 'desafío sin sobrecarga'?",
+      "opciones": [
+        "Ser igual de exigente para todos: así nadie se siente tratado de forma distinta.",
+        "Retos a la medida: uno que estire a Mateo y otro que Sara pueda lograr con apoyo.",
+        "Ser más sencilla, para que todos la terminen rápido y nadie se frustre.",
+        "Ser más exigente, porque el escultismo forma el carácter a punta de dificultad."
+      ],
+      "respuesta": 1,
+      "clave": "Desafío sin sobrecarga = reto a la medida de cada quien: ni tan fácil que aburra ni tan difícil que abrume. 'La misma exigencia para todos' suena justa, pero deja a unos sin reto y a otros sin posibilidad."
+    },
+    {
+      "id": 7,
+      "eje": "eje1",
+      "seccion": "A",
+      "tipo": "emparejar",
+      "dificultad": "media",
+      "enunciado": "Empareja cada concepto con su significado.",
+      "columnaA": [
+        {
+          "id": "1",
+          "texto": "Autoeducación"
+        },
+        {
+          "id": "2",
+          "texto": "Coeducación"
+        },
+        {
+          "id": "3",
+          "texto": "Educación por el amor"
+        }
+      ],
+      "columnaB": [
+        {
+          "id": "A",
+          "texto": "niños y niñas se educan juntos, con las mismas oportunidades y sin roles según el género"
+        },
+        {
+          "id": "B",
+          "texto": "el protagonista es responsable de su propio desarrollo y el adulto crea condiciones"
+        },
+        {
+          "id": "C",
+          "texto": "se educa desde el vínculo afectivo, el aprecio y el ejemplo, no desde el temor"
+        }
+      ],
+      "respuesta": {
+        "1": "B",
+        "2": "A",
+        "3": "C"
+      },
+      "clave": "Autoeducación=protagonista de su desarrollo; coeducación=niños y niñas juntos, con las mismas oportunidades; educación por el amor=desde el afecto."
+    },
+    {
+      "id": 8,
+      "eje": "eje2",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "media",
+      "enunciado": "Un dirigente nuevo te dice: 'El Método Scout es básicamente hacer buenas actividades al aire libre y con insignias'. ¿Qué le precisas?",
+      "opciones": [
+        "Que tiene razón, siempre que las actividades sean atractivas y estén bien planeadas.",
+        "Que el Método es un sistema: varios elementos que solo funcionan cuando van juntos.",
+        "Que le falta lo esencial: el Método es, sobre todo, la Promesa y la Ley.",
+        "Que le falta el sistema de insignias, que es lo que vuelve scout una actividad."
+      ],
+      "respuesta": 1,
+      "clave": "El Método es un sistema de autoeducación cuyos elementos interactúan como un todo; ninguna parte sola —actividades, Promesa, insignias— es 'el Método'. Reducirlo a actividades al aire libre es la confusión más común en dirigentes nuevos."
+    },
+    {
+      "id": 9,
+      "eje": "eje2",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "subtipo": "identificar_falsa",
+      "dificultad": "alta",
+      "enunciado": "Sobre cómo funciona el Método como sistema, ¿cuál afirmación es FALSA?",
+      "opciones": [
+        "Sus ocho elementos son igualmente importantes; ninguno manda sobre los otros.",
+        "Cada rama prioriza los elementos que le sirven y deja los demás para ramas mayores.",
+        "Se aplican combinados y equilibrados a lo largo del tiempo, no todos en cada actividad.",
+        "Usar solo dos o tres elementos sueltos, aunque bien hechos, no es aplicar el Método."
+      ],
+      "respuesta": 1,
+      "clave": "FALSA la b: los ocho elementos permanecen en todas las ramas; lo que cambia es cómo se viven. Ninguna rama 'guarda' elementos para después. Sí es cierto que no todos aparecen con igual intensidad en cada actividad: el equilibrio se mira en el tiempo."
+    },
+    {
+      "id": 10,
+      "eje": "eje2",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "alta",
+      "enunciado": "En la planeación del campamento, Juliana (dirigente) hace preguntas, consigue el mapa y el permiso, pero deja que la patrulla decida la ruta y el menú. ¿Qué elemento del Método está encarnando Juliana, sobre todo?",
+      "opciones": [
+        "El apoyo del adulto.",
+        "El aprender haciendo.",
+        "La progresión personal.",
+        "La participación en la comunidad."
+      ],
+      "respuesta": 0,
+      "clave": "Juliana facilita sin protagonizar: crea condiciones (mapa, permiso, preguntas) y no decide por la patrulla; eso es apoyo del adulto. La patrulla, sí, aprende haciendo —por eso esa opción tienta—, pero la pregunta es por el papel de Juliana. Si ella fijara ruta y menú 'para que salga bien', anularía el elemento."
+    },
+    {
+      "id": 11,
+      "eje": "eje2",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "media",
+      "enunciado": "El sábado, la patrulla Águilas se reparte quién trae la carpa, quién cocina y quién lidera la marcha, y resuelve sola una discusión. ¿Qué elemento se está viviendo sobre todo?",
+      "opciones": [
+        "la naturaleza.",
+        "el sistema de equipos.",
+        "la progresión personal.",
+        "el marco simbólico."
+      ],
+      "respuesta": 1,
+      "clave": "Pequeños grupos que deciden, cooperan y asumen responsabilidades: eso es el sistema de equipos. Que la patrulla esté en el bosque no lo convierte en 'naturaleza', ni que cada quien avance en 'progresión personal': el elemento se define por lo que hace el grupo."
+    },
+    {
+      "id": 12,
+      "eje": "eje2",
+      "seccion": "A",
+      "tipo": "emparejar",
+      "dificultad": "alta",
+      "enunciado": "Empareja cada escena con el elemento del Método que más se ve en ella.",
+      "columnaA": [
+        {
+          "id": "1",
+          "texto": "La patrulla se reparte tareas y monta sola el campamento"
+        },
+        {
+          "id": "2",
+          "texto": "Los lobatos entran a la Selva y el relato 'los agarra' desde el primer minuto"
+        },
+        {
+          "id": "3",
+          "texto": "La Comunidad detecta un problema del barrio y decide actuar sobre él"
+        },
+        {
+          "id": "4",
+          "texto": "Cada scout escoge su siguiente reto según lo que ya logró"
+        }
+      ],
+      "columnaB": [
+        {
+          "id": "A",
+          "texto": "marco simbólico"
+        },
+        {
+          "id": "B",
+          "texto": "sistema de equipos"
+        },
+        {
+          "id": "C",
+          "texto": "participación en la comunidad"
+        },
+        {
+          "id": "D",
+          "texto": "progresión personal"
+        }
+      ],
+      "respuesta": {
+        "1": "B",
+        "2": "A",
+        "3": "C",
+        "4": "D"
+      },
+      "clave": "Cada escena tiene varios elementos, pero uno predomina: la patrulla que se organiza sola es el sistema de equipos; el relato que atrapa es el marco simbólico; actuar sobre un problema real del barrio es participación en la comunidad; elegir el reto según lo logrado es progresión personal. Si emparejaste por la palabra que se repetía y no por la escena, este ítem te lo mostró."
+    },
+    {
+      "id": 13,
+      "eje": "eje2",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "media",
+      "enunciado": "¿Cómo se usa bien el marco simbólico (el relato y los símbolos)?",
+      "opciones": [
+        "Explicarlo con todo detalle para que todos lo entiendan igual.",
+        "Proponerlo y vivirlo sin sobreexplicarlo, ajustado a la edad.",
+        "Reservarlo para los campamentos, donde el ambiente lo hace creíble.",
+        "Renovarlo en cada reunión para que los jóvenes no se aburran de él."
+      ],
+      "respuesta": 1,
+      "clave": "El marco simbólico funciona cuando se vive y resuena, no cuando se explica: sobreexplicarlo lo mata, y es la trampa más frecuente en adultos. Se adapta a la edad —la fantasía de Manada no es el estilo del Clan— y necesita continuidad: ni solo en campamento ni cambiado cada reunión."
+    },
+    {
+      "id": 14,
+      "eje": "eje2",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "subtipo": "juicio_situacional",
+      "dificultad": "alta",
+      "enunciado": "Para “ahorrar tiempo”, un dirigente enseña él mismo cada nudo paso a paso y corrige a cada participante. ¿Qué está debilitando, sobre todo?",
+      "opciones": [
+        "La progresión personal y el sistema de equipos.",
+        "El aprender haciendo y el apoyo del adulto.",
+        "La Promesa y la Ley, y el marco simbólico.",
+        "La naturaleza y la participación en la comunidad."
+      ],
+      "respuesta": 1,
+      "clave": "Al enseñar de frente y corregir a todos, el adulto protagoniza: el joven no descubre (aprender haciendo) y el adulto pasa de facilitar a dirigir (apoyo del adulto). Roza también el sistema de equipos —el guía podría enseñar a su patrulla—, pero lo primero que se rompe es el descubrimiento."
+    },
+    {
+      "id": 15,
+      "eje": "eje3",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "alta",
+      "enunciado": "¿En qué se diferencian una “rama” y una “unidad”?",
+      "opciones": [
+        "Son sinónimos: en la práctica se usan indistintamente y no cambia nada.",
+        "La rama es la propuesta educativa para una edad; la unidad es el grupo concreto donde se vive.",
+        "La rama es el grupo concreto de un grupo scout; la unidad es la franja de edad.",
+        "La rama es el nombre oficial y la unidad es el apodo que cada grupo le pone."
+      ],
+      "respuesta": 1,
+      "clave": "Rama = identidad educativa de una edad (qué se busca, con qué lenguaje, cuánta autonomía). Unidad = el grupo concreto donde eso se vive (esta Manada, esta Tropa). Confundirlas hace copiar la 'forma' de la unidad sin entender el 'para qué' de la rama."
+    },
+    {
+      "id": 16,
+      "eje": "eje3",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "alta",
+      "enunciado": "Al pasar de una rama a otra, ¿qué permanece y qué cambia?",
+      "opciones": [
+        "Permanecen los elementos del Método y los valores; cambia cómo se viven según la edad.",
+        "Cambia el Método completo: cada rama tiene su propio método adaptado a su edad.",
+        "Permanece todo igual: lo único que cambia es el nombre de la unidad y su uniforme.",
+        "Cambian los valores según la edad y permanecen las técnicas y las actividades."
+      ],
+      "respuesta": 0,
+      "clave": "Permanecen los ocho elementos y los valores de la Promesa y la Ley. Cambian el lenguaje, la autonomía, el tamaño y forma de los pequeños grupos, el nivel de desafío y el rol del adulto. 'Cada rama tiene su propio método' es una confusión frecuente: hay un solo Método, vivido distinto."
+    },
+    {
+      "id": 17,
+      "eje": "eje3",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "subtipo": "juicio_situacional",
+      "dificultad": "alta",
+      "enunciado": "Acompañas un Clan de Rovers (jóvenes de 18 a 20 años). ¿Cuál es el estilo de acompañamiento adecuado?",
+      "opciones": [
+        "Dirigir y decidir las actividades por ellos, porque tú tienes más experiencia.",
+        "Animar con juegos de fantasía y celebrar de cerca cada pequeño paso que dan.",
+        "Asesorar, cuidando el sentido y la seguridad, sin decidir por ellos.",
+        "Imponerles retos físicos fuertes y darles instrucciones técnicas constantes."
+      ],
+      "respuesta": 2,
+      "clave": "Con Rovers (18–20) el adulto asesora cuidando el sentido y la seguridad, sin decidir por ellos. Animar con fantasía y celebrar cada paso es estilo de Manada; imponer retos físicos caricaturiza la Tropa; dirigir 'porque tengo más experiencia' es la tentación más común del adulto."
+    },
+    {
+      "id": 18,
+      "eje": "eje3",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "subtipo": "juicio_situacional",
+      "dificultad": "media",
+      "enunciado": "Con una Familia de Cachorros (niños de 5 a 6 años), ¿qué conviene priorizar?",
+      "opciones": [
+        "Charlas cortas y ejemplos sencillos sobre los valores, para que los entiendan.",
+        "Juego, fantasía, afecto y un adulto muy cercano, en experiencias cortas.",
+        "Pequeños proyectos de servicio que ellos elijan y saquen adelante solos.",
+        "Retos por equipos con algo de técnica, para que empiecen a medirse entre sí."
+      ],
+      "respuesta": 1,
+      "clave": "A los 5–6 años se aprende jugando, con afecto y con el adulto cerca; las experiencias son breves porque la atención lo es. Las charlas —aunque sean cortas— y los proyectos autónomos pertenecen a edades mayores; los retos por equipos con técnica son de Tropa."
+    },
+    {
+      "id": 19,
+      "eje": "eje3",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "alta",
+      "enunciado": "Dos dirigentes van a asumir una Tropa. Pedro llega con un fichero de 200 juegos y técnicas; Ana llega habiendo estudiado cómo piensan y qué buscan los jóvenes de 11 a 14 años. ¿Quién tiene la base más sólida para aplicar bien el Método, y por qué?",
+      "opciones": [
+        "Pedro: sin actividades atractivas ningún método funciona en la práctica.",
+        "Ana: entender al joven de esa edad es lo que da sentido a cualquier actividad.",
+        "Ninguno: lo decisivo es tener bien montado el marco simbólico de la unidad.",
+        "Pedro: cumplir muchas actividades es lo que hace avanzar la progresión."
+      ],
+      "respuesta": 1,
+      "clave": "Comprender cómo piensa, siente y vive el NNAJ de la etapa es la base: sin eso, técnicas y juegos se aplican a ciegas. El fichero de Pedro es útil, pero es un medio; Ana sabrá elegir de él lo que educa."
+    },
+    {
+      "id": 20,
+      "eje": "transversal",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "media",
+      "enunciado": "Terminó la caminata. Los scouts llegan cansados y contentos. ¿Cuál de estas acciones del dirigente convierte esa vivencia en aprendizaje?",
+      "opciones": [
+        "Pasar de una vez al almuerzo y a la siguiente actividad para aprovechar el ánimo.",
+        "Sentarse en círculo diez minutos: qué sintieron, qué salió bien, qué harían distinto.",
+        "Anotar quién llegó primero y quién se quejó, para tenerlo en cuenta en la progresión.",
+        "Dejarlos descansar en silencio: la experiencia habla por sí sola."
+      ],
+      "respuesta": 1,
+      "clave": "Vivir no basta: la experiencia se vuelve aprendizaje cuando se mira (nombrar emociones, aciertos y errores). Pasar de largo la desperdicia; calificarla la convierte en examen; 'dejar que hable sola' confía en que ocurra lo que el adulto debe provocar."
+    },
+    {
+      "id": 21,
+      "eje": "casos",
+      "seccion": "B",
+      "tipo": "caso",
+      "dificultad": "alta",
+      "enunciado": "En una Manada (7 a 10 años), un dirigente dedica 20 minutos a explicar los valores de la Ley, de pie frente a los lobatos, y les pide atención completa. Varios se distraen. Te pide consejo. ¿Qué le recomiendas?",
+      "opciones": [
+        "Mantener la charla pero bajarla a 10 minutos y cerrar con preguntas para verificar que entendieron.",
+        "Meter el valor en un juego o en un relato de la Selva, donde lo vivan sin que nadie se lo explique.",
+        "Dejar los valores para cuando estén en Tropa; a esta edad basta con que jueguen y se diviertan.",
+        "Pedir más silencio y repetir la explicación: si no aprenden a escuchar ahora, no lo harán después."
+      ],
+      "respuesta": 1,
+      "justificacion": {
+        "requerida": true,
+        "etiqueta": "Justifica tu elección en una frase",
+        "puntua": false
+      },
+      "clave": "En Manada el valor se vive en juego y relato, no se explica: así aprende un niño de 7 a 10. Acortar la charla (a) alivia el síntoma, pero sigue siendo instrucción; posponer los valores (c) confunde 'no explicar' con 'no educar'; pedir más silencio y repetir (d) insiste en lo que ya falló: instrucción y obediencia."
+    },
+    {
+      "id": 22,
+      "eje": "casos",
+      "seccion": "B",
+      "tipo": "caso",
+      "dificultad": "alta",
+      "enunciado": "Un equipo de Nómadas Scout (15 a 17 años) presenta un proyecto con fallas claras de planeación. El adulto lo reescribe completo antes de la siguiente reunión y se los devuelve listo. ¿Qué le dirías?",
+      "opciones": [
+        "Que hizo bien: el adulto responde por la calidad y la seguridad, y el equipo aprende del ejemplo.",
+        "Que debió devolverlo con preguntas, para que ellos vieran las fallas y decidieran cómo corregirlas.",
+        "Que bastaba con marcar las fallas en rojo y dejar que ellos pasaran en limpio la corrección.",
+        "Que lo importante es que el proyecto salga; si el equipo lo ejecuta, la autonomía queda a salvo."
+      ],
+      "respuesta": 1,
+      "justificacion": {
+        "requerida": true,
+        "etiqueta": "Justifica tu elección en una frase",
+        "puntua": false
+      },
+      "clave": "A los 15–17 el joven decide y el adulto acompaña con preguntas: reescribir por ellos anula el apoyo del adulto y la autonomía de la edad. Marcar en rojo (c) sigue decidiendo por ellos, solo que en más pasos; 'que lo ejecuten' (d) confunde autonomía con obediencia; la seguridad (a) se cuida sin quitarles la decisión."
+    }
+  ],
+  "autopercepcion": {
+    "seccion": "C",
+    "descripcion": "Sección C · Autopercepción (PRE = POST · escala 1 a 5)",
+    "escala": {
+      "min": 1,
+      "max": 5,
+      "etiquetaMin": "nada de acuerdo",
+      "etiquetaMax": "totalmente de acuerdo"
+    },
+    "afirmaciones": [
+      "Puedo explicar con mis palabras cuál es el centro de la Misión del Movimiento Scout.",
+      "Distingo con claridad educar de instruir y de recrear.",
+      "Puedo explicar con mis palabras qué es el Método Scout.",
+      "Puedo decir qué le aporta cada elemento del Método a los jóvenes de mi unidad.",
+      "Conozco bien cómo aprenden los niños, niñas o jóvenes de la edad de mi unidad.",
+      "Me siento capaz de llevar una misma actividad a otra rama sin que pierda sentido."
+    ]
+  },
+  "pendienteDoctrinal": [
+    {
+      "id": 7,
+      "eje": "eje1",
+      "seccion": "A",
+      "tipo": "emparejar",
+      "dificultad": "media",
+      "enunciado": "Empareja cada escena con el concepto que la describe.",
+      "columnaA": [
+        {
+          "id": "1",
+          "texto": "Akela deja que el lobato elija su siguiente reto y solo le pregunta cómo va"
+        },
+        {
+          "id": "2",
+          "texto": "En la patrulla, niños y niñas se turnan por igual para cocinar, liderar la marcha y decidir la ruta"
+        },
+        {
+          "id": "3",
+          "texto": "El dirigente corrige sin gritar y reconoce el esfuerzo antes que el error"
+        },
+        {
+          "id": "4",
+          "texto": "El dirigente anuncia que quien no cumpla pierde el campamento"
+        }
+      ],
+      "columnaB": [
+        {
+          "id": "A",
+          "texto": "Coeducación"
+        },
+        {
+          "id": "B",
+          "texto": "Autoeducación"
+        },
+        {
+          "id": "C",
+          "texto": "Educación por el amor"
+        },
+        {
+          "id": "D",
+          "texto": "Educación por el temor"
+        }
+      ],
+      "respuesta": {
+        "1": "B",
+        "2": "A",
+        "3": "C",
+        "4": "D"
+      },
+      "clave": "Autoeducación: el protagonista decide y el adulto crea condiciones. Coeducación: niños y niñas crecen juntos con las mismas oportunidades y responsabilidades; esa mezcla enriquece a todos. Educación por el amor: desde el vínculo y el ejemplo. La cuarta escena es su contrario —el castigo como motor— y está aquí para que no se acierte por descarte.",
+      "estadoDoctrinal": "CORREGIDO 14-sep-2026 según auditoría — pendiente decisión del dueño"
+    },
+    {
+      "id": 23,
+      "eje": "transversal",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "dificultad": "media",
+      "enunciado": "Al cierre del campamento, ¿cuál de estas preguntas del dirigente ayuda MÁS a convertir lo vivido en aprendizaje?",
+      "opciones": [
+        "¿Qué patrulla ganó el rally y con cuántos puntos?",
+        "¿Qué harían distinto si repitiéramos la caminata mañana?",
+        "¿Ya empacaron todos la carpa y revisaron el terreno?",
+        "¿Les gustó el campamento? Levanten la mano."
+      ],
+      "respuesta": 1,
+      "clave": "Mirar la experiencia es preguntar por lo que pasó y por lo que se haría distinto: eso abre el aprendizaje. Los puntos (a) miden, no enseñan; el empaque (c) es logística; '¿les gustó?' (d) toca la emoción pero no la convierte en aprendizaje.",
+      "estadoDoctrinal": "APROBADO 14-sep-2026 (auditor doctrinal) — pendiente decisión del dueño para entrar al instrumento"
+    },
+    {
+      "id": 24,
+      "eje": "transversal",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "subtipo": "juicio_situacional",
+      "dificultad": "alta",
+      "enunciado": "Un dirigente de Tropa dice: 'Yo no hago evaluación con los scouts; con vivirlo aprenden'. ¿Qué le falta a su forma de trabajar?",
+      "opciones": [
+        "Nada: en el escultismo la experiencia educa por sí sola.",
+        "El momento de mirar juntos lo vivido antes de pasar a lo siguiente.",
+        "Un examen corto al final de cada actividad para verificar.",
+        "Que el adulto cierre cada actividad diciéndoles qué debieron aprender."
+      ],
+      "respuesta": 1,
+      "clave": "Vivir sin mirar deja el aprendizaje al azar; el ciclo se cierra cuando el grupo nombra lo que sintió, lo que salió bien y lo que cambiaría. No hace falta un examen (c), y el “discurso final” del adulto (d) tampoco sirve: la reflexión la hacen ellos, con preguntas.",
+      "estadoDoctrinal": "CORREGIDO 14-sep-2026 según auditoría — pendiente decisión del dueño"
+    },
+    {
+      "id": 25,
+      "eje": "eje2",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "subtipo": "juicio_situacional",
+      "dificultad": "alta",
+      "enunciado": "Una Tropa (11 a 14 años) hace todas sus reuniones en el salón parroquial; el dirigente dice que 'la naturaleza' está cubierta porque una vez al año van a un parque. ¿Qué le precisarías?",
+      "opciones": [
+        "Que está bien: el elemento naturaleza se cumple con el campamento anual.",
+        "Que la naturaleza es contacto constructivo y frecuente con el entorno, no una salida al año.",
+        "Que lo que le falta no es naturaleza sino técnica de campismo en el salón.",
+        "Que basta con decorar el salón con el marco simbólico para compensar."
+      ],
+      "respuesta": 1,
+      "clave": "La naturaleza es un elemento propio del Método: un contacto constructivo y sostenido con el entorno, donde los otros elementos ganan intensidad, y se puede vivir también en la ciudad: un parque, una cancha, el cielo de la cuadra. Una salida al año no lo cubre; la técnica en el salón (c) y la decoración (d) lo sustituyen por su apariencia.",
+      "estadoDoctrinal": "APROBADO 14-sep-2026 (auditor doctrinal) — pendiente decisión del dueño para entrar al instrumento"
+    },
+    {
+      "id": 26,
+      "eje": "eje2",
+      "seccion": "A",
+      "tipo": "opcion_unica",
+      "subtipo": "juicio_situacional",
+      "dificultad": "alta",
+      "enunciado": "En una Tropa, todos los scouts reciben la misma insignia el mismo día 'para que nadie se sienta menos'. ¿Qué elemento se está desdibujando?",
+      "opciones": [
+        "La progresión personal: cada quien avanza a su ritmo y reconoce sus propios logros.",
+        "El sistema de equipos: las insignias deberían entregarse por patrulla.",
+        "El marco simbólico: la insignia perdió su ceremonia.",
+        "Ninguno: la igualdad en el reconocimiento protege la autoestima."
+      ],
+      "respuesta": 0,
+      "clave": "La progresión personal es avanzar a la propia medida y reconocer logros reales de cada uno; entregar lo mismo a todos borra ese camino. La igualdad que protege (d) es la del trato, no la del logro; la insignia por patrulla (b) confunde elementos.",
+      "estadoDoctrinal": "APROBADO 14-sep-2026 (auditor doctrinal) — pendiente decisión del dueño para entrar al instrumento"
+    }
+  ]
+}

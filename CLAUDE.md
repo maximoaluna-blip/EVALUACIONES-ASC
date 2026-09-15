@@ -18,7 +18,8 @@ App complementaria de **evaluación PRE/POST** de cursos de formación ASC: apli
 
 1. **No confundir con certificación**: esta app mide apropiación conceptual antes/después, no otorga certificados `ASC-AAAA-XXXXX`. Si un curso necesita certificar, eso vive en su línea (Adultos/DI/PJ), no aquí.
 2. **Backend separado a propósito**: no fusionar el Sheet/Apps Script de esta app con el de las líneas de cursos, aunque comparta el mismo dueño de Google Workspace — evita que un bug en una evaluación afecte registros de certificación.
-3. **Doble compuerta de calidad**: auditoría doctrinal (`auditor-doctrinal-asc`, ver `docs/AUDITORIA-DOCTRINAL.md`) + suite `PRUEBAS-E2E/` en verde. Corre en GitHub Actions en cada push/PR.
+3. **Triple compuerta de calidad**: auditoría doctrinal (`auditor-doctrinal-asc`, ver `docs/AUDITORIA-DOCTRINAL.md` y `docs/AUDITORIA-DOCTRINAL-V2.md`) + auditoría pedagógica (`auditor-pedagogico-asc`, ver `docs/AUDITORIA-PEDAGOGICA.md`: medir **sesgo de longitud** y solape enunciado→respuesta, no solo el nivel cognitivo nominal) + suite `PRUEBAS-E2E/` en verde. La suite corre en GitHub Actions en cada push/PR.
+3-bis. **Los ítems no se cambian dentro de una cohorte** (D9): un cambio a mitad de cohorte rompe la comparabilidad PRE↔POST. Las versiones nuevas del instrumento (`data/<id>-v2.json`) se despliegan entre cohortes.
 4. **Justificaciones de casos abiertos no puntúan** — son evidencia cualitativa, la nota es 100% objetiva (ver `docs/MODELO-CALIFICACION.md`).
 5. **La clave razonada completa solo se revela en POST** — mostrarla en PRE invalidaría la medición.
 
@@ -31,6 +32,8 @@ App complementaria de **evaluación PRE/POST** de cursos de formación ASC: apli
 5. Verificar la suite `PRUEBAS-E2E/` en verde.
 6. Commit + push a `main` → GitHub Pages redespliega (~1 min). Verificar en producción antes de anunciar "publicado".
 
-## 5. Estado (12-jul-2026)
+## 5. Estado (14-sep-2026)
 
-Fase 1 en producción/piloto (evaluación *Método Scout · Un Día*, 28 ítems auditados doctrinalmente, 0 críticos). Backend con `LockService`, consentimiento de datos (Ley 1581), certificado de calificación con delta PRE→POST. Suite E2E (23 tests) en CI. Pendiente (Fase 2): generalizar a otros cursos, export del tablero, registro de tratamiento de datos. Detalle completo y siempre actualizado en `docs/ROADMAP.md`.
+Fase 1 en producción/piloto (evaluación *Método Scout · Un Día*, 22 ítems + 6 de autopercepción, auditados doctrinalmente en junio, 0 críticos). Backend con `LockService`, consentimiento de datos (Ley 1581), certificado de calificación con delta PRE→POST. Suite E2E (23 tests) en CI.
+
+**14-sep-2026 — auditoría pedagógica ejecutada (`docs/AUDITORIA-PEDAGOGICA.md`): REQUIERE MEJORA.** Sesgo de longitud en 18/19 ítems de opción; 6 hallazgos altos. El corrector pedagógico produjo **`data/metodo-scout-v2.json`** (`evaluacionId: metodo-scout-v2`, 22 ítems reescritos, sesgo 7/19, más un bloque `pendienteDoctrinal` con los ítems 7-bis y 23–26 propuestos), y el auditor doctrinal la revisó (`docs/AUDITORIA-DOCTRINAL-V2.md`, **APTA CON CORRECCIONES**, ya aplicadas). **La v1 sigue en producción sin tocar**; el hallazgo C1 de esa auditoría (ítem 7, definición de «coeducación» — niños y niñas educados **juntos con igualdad**, Modelo 2026 p. 90) afecta a la v1 publicada. **Decisiones pendientes del dueño:** reemplazar v1 por v2 entre cohortes, incorporar o no los ítems 23–26. Pendiente (Fase 2): generalizar a otros cursos, export del tablero, registro de tratamiento de datos. Detalle en `docs/ROADMAP.md`.

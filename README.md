@@ -5,7 +5,9 @@
 Aplicación web (celular y PC, sin instalación) para **generar y aplicar evaluaciones PRE y POST** a participantes de cursos de formación, **calificarlas automáticamente** y entregar **retroalimentación** al participante y al formador.
 
 > **Estado:** ✅ Fase 1 en producción (curso *Método Scout · Un Día*).
-> **Fecha:** 2026-06-27.
+> **Fecha:** 2026-06-27 · **Última revisión:** 2026-09-14.
+>
+> ⚠️ **14-sep-2026 — tercera auditoría (pedagógica) hecha; veredicto REQUIERE MEJORA:** en 18 de 19 ítems de opción la respuesta correcta es la más larga (se puede aprobar sin saber). Hay una **versión 2 del instrumento** (`data/metodo-scout-v2.json`, 22 ítems reescritos, sesgo 7/19, auditada doctrinalmente: `docs/AUDITORIA-DOCTRINAL-V2.md`) **sin desplegar**: el reemplazo de la v1 se hace **entre cohortes**, por decisión del dueño (D9). La v1 publicada tiene además un error doctrinal heredado en el ítem 7 («coeducación»), documentado en esa auditoría.
 >
 > 🌐 **App:** https://maximoaluna-blip.github.io/EVALUACIONES-ASC/
 > 📊 **Tablero del formador:** https://maximoaluna-blip.github.io/EVALUACIONES-ASC/dashboard-formador.html

@@ -136,7 +136,7 @@ IDs y URLs completos en [BACKEND.md](BACKEND.md). ⚠️ Antes de publicar el re
 
 - **Auditoría doctrinal:** ✅ [AUDITORIA-DOCTRINAL.md](AUDITORIA-DOCTRINAL.md) (0 críticos; contenido verificado contra fuentes oficiales 2026).
 - **Pruebas E2E + accesibilidad:** ✅ 23 tests Playwright + axe en `PRUEBAS-E2E/` (smoke, WCAG AA, responsive, flujo PRE/POST con backend interceptado, consentimiento). Corre en **GitHub Actions** en cada push/PR a `main`. Detectó y se corrigieron 2 problemas de accesibilidad (contraste AA; nombres accesibles en selects de emparejar).
-- **Auditoría pedagógica:** ⬜ pendiente/opcional — pipeline `/auditar-pedagogia` disponible (calidad de ítems: comprensión/aplicación vs. memoria, distractores). No ejecutado aún.
+- **Auditoría pedagógica:** ✅ ejecutada el 14-sep-2026 — [AUDITORIA-PEDAGOGICA.md](AUDITORIA-PEDAGOGICA.md), veredicto **REQUIERE MEJORA** (la correcta es la más larga en 18/19 ítems de opción; 6 altos, 7 medios, 6 bajos). Produjo la **v2 del instrumento** (`data/metodo-scout-v2.json`, sesgo 7/19), auditada doctrinalmente en [AUDITORIA-DOCTRINAL-V2.md](AUDITORIA-DOCTRINAL-V2.md) (**APTA CON CORRECCIONES**, aplicadas). **Sin desplegar**: el reemplazo de la v1 se decide entre cohortes (D9). Esa auditoría detectó además un error en la **v1 publicada** (ítem 7, «coeducación»).
 - **Endurecimiento pre-piloto (2026-06-27):** `LockService` para escrituras concurrentes (backend v5), consentimiento de datos en PRE (Ley 1581), UX de cierre, y limpieza del Sheet. Detalle en [ROADMAP.md](ROADMAP.md).
 
 ## 7. Convenciones del proyecto

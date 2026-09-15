@@ -39,7 +39,12 @@ Plan de construcción por hitos. Fase 1 = curso *Método Scout (Un Día)* de pun
 ## Calidad aplicada
 - **Doctrinal:** ✅ auditada (0 críticos). Ver [AUDITORIA-DOCTRINAL.md](AUDITORIA-DOCTRINAL.md).
 - **Operativa (E2E + a11y):** ✅ 23 tests en CI.
-- **Pedagógica:** ⬜ pendiente/opcional — disponible el pipeline `/auditar-pedagogia` (calidad de ítems: comprensión/aplicación vs. memoria, distractores). Aún no ejecutado sobre esta evaluación.
+- **Pedagógica:** ✅ ejecutada el 14-sep-2026 — [AUDITORIA-PEDAGOGICA.md](AUDITORIA-PEDAGOGICA.md), **REQUIERE MEJORA** (sesgo de longitud 18/19). Corrección lista en `data/metodo-scout-v2.json` (auditada: [AUDITORIA-DOCTRINAL-V2.md](AUDITORIA-DOCTRINAL-V2.md), APTA CON CORRECCIONES aplicadas). **No desplegada** — ver D9 y las decisiones pendientes de abajo.
+
+## Decisiones pendientes del dueño (14-sep-2026)
+- Reemplazar la v1 por la v2 **entre cohortes** (`node generador/build-evaluacion.js metodo-scout-v2` → `evaluacion.html`; el `evaluacionId` cambia, así que el tablero debe distinguir cohortes).
+- Incorporar o no los ítems propuestos 23–26 y el 7-bis (bloque `pendienteDoctrinal` de la v2).
+- Corregir en la v1 publicada el ítem 7 («coeducación», C1 de la auditoría v2) si la v2 tarda en salir.
 
 ---
 
@@ -50,7 +55,7 @@ Plan de construcción por hitos. Fase 1 = curso *Método Scout (Un Día)* de pun
 - Posible reutilización del PORTAL-ADMIN-ASC para ver evaluaciones junto con cursos.
 
 ## Fase 3 — Mejoras (futuro / a evaluar)
-- Auditoría **pedagógica** de los ítems (`/auditar-pedagogia`).
+- ~~Auditoría **pedagógica** de los ítems (`/auditar-pedagogia`).~~ Hecha el 14-sep-2026 (ver Calidad aplicada).
 - Rate limiting y anti-duplicados por correo.
 - Reportes individuales en PDF para cada participante.
 - Integración con la plataforma de cursos (lanzar la evaluación desde el curso).
